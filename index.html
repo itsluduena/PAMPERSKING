@@ -3,24 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Menú Digital - Pamper's King</title>
-  <!-- Fuentes estilo comida rápida (Impactante + Lectura clara) -->
+  <title>Pamper's King — Carta Digital y Pedidos</title>
+  <!-- Tipografías con personalidad de rotisería / comida rápida clásica -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
   
   <style>
     :root {
-      --red-primary: #d61f26;     /* Rojo intenso de los títulos de la carta */
-      --red-dark: #a81319;
-      --yellow-bright: #ffcb05;   /* Amarillo mostaza vibrante */
-      --yellow-light: #fff3b0;    /* Resaltador amarillo de tu carta */
-      --blue-table: #1d639c;      /* Azul de la tabla de sándwiches */
-      --blue-light: #e6f2fa;
-      --cream-bg: #fffdf7;        /* Fondo claro cálido */
-      --text-dark: #222222;
-      --text-muted: #555555;
-      --white: #ffffff;
+      --bg-paper: #fcf8f0;       /* Tono papel cálido de la carta original */
+      --bg-card: #ffffff;
+      --red-brand: #d62828;      /* Rojo vibrante de títulos */
+      --red-dark: #a61b1b;
+      --yellow-mark: #ffd60a;    /* Amarillo resaltador de la carta */
+      --yellow-soft: #fff3b0;
+      --ink-dark: #1f1a17;       /* Tinta oscura cálida */
+      --ink-muted: #5c534c;
+      --blue-table: #1d4ed8;     /* Detalle azul del encabezado de tabla original */
+      --green-wa: #25d366;
+      --green-wa-dark: #1da851;
+      --border-ink: #2b2420;
     }
 
     * {
@@ -30,292 +32,564 @@
     }
 
     body {
-      font-family: 'Nunito', sans-serif;
-      background-color: var(--cream-bg);
-      background-image: radial-gradient(#ffcb0533 1px, transparent 1px);
-      background-size: 16px 16px;
-      color: var(--text-dark);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-paper);
+      /* Patrón sutil de mantel/papel de comida rápida */
+      background-image: radial-gradient(#e6dec8 1px, transparent 1px);
+      background-size: 18px 18px;
+      color: var(--ink-dark);
       line-height: 1.45;
-      padding-bottom: 45px;
+      padding-bottom: 100px;
     }
 
-    /* ENCABEZADO FIJO ESTILO FAST FOOD */
+    h1, h2, h3, .brand-font {
+      font-family: 'Fredoka', cursive, sans-serif;
+    }
+
+    /* ================= ENCABEZADO ================= */
     header {
       position: sticky;
       top: 0;
-      z-index: 1000;
-      background: linear-gradient(135deg, var(--red-primary) 0%, var(--red-dark) 100%);
-      border-bottom: 4px solid var(--yellow-bright);
-      padding: 10px 16px;
+      z-index: 900;
+      background-color: var(--red-brand);
+      color: #fff;
+      padding: 10px 18px;
       display: flex;
       align-items: center;
-      gap: 14px;
-      box-shadow: 0 4px 14px rgba(214, 31, 38, 0.35);
+      justify-content: space-between;
+      border-bottom: 4px solid var(--ink-dark);
+      box-shadow: 0 4px 0 rgba(31, 26, 23, 0.15);
     }
 
-    /* Logo en la esquina superior izquierda */
-    .logo-container {
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-box {
+      width: 54px;
+      height: 54px;
+      border-radius: 14px;
+      background-color: var(--yellow-mark);
+      border: 3px solid var(--ink-dark);
       overflow: hidden;
-      background-color: var(--white);
-      border: 3px solid var(--yellow-bright);
       flex-shrink: 0;
+      box-shadow: 3px 3px 0 var(--ink-dark);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
     }
 
-    .logo-container img {
+    .logo-box img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
 
-    .brand-info h1 {
-      font-family: 'Fredoka', sans-serif;
-      font-size: 1.55rem;
-      font-weight: 700;
-      color: var(--yellow-bright);
-      text-transform: uppercase;
+    .brand-title h1 {
+      font-size: 1.5rem;
       letter-spacing: 0.5px;
-      text-shadow: 2px 2px 0px #7a090e;
+      text-transform: uppercase;
       line-height: 1.1;
+      text-shadow: 2px 2px 0 var(--ink-dark);
     }
 
-    .brand-info span {
+    .brand-title span {
       display: inline-block;
-      background-color: var(--white);
-      color: var(--red-primary);
+      background-color: var(--yellow-mark);
+      color: var(--ink-dark);
       font-size: 0.75rem;
-      font-weight: 900;
+      font-weight: 800;
       padding: 1px 8px;
-      border-radius: 10px;
-      text-transform: uppercase;
+      border-radius: 6px;
+      border: 1.5px solid var(--ink-dark);
       margin-top: 2px;
     }
 
-    /* BARRA DE CATEGORÍAS DESLIZABLE */
-    nav.category-nav {
+    /* Botón superior del carrito */
+    .top-cart-btn {
+      background-color: var(--yellow-mark);
+      color: var(--ink-dark);
+      border: 3px solid var(--ink-dark);
+      border-radius: 12px;
+      padding: 8px 14px;
+      font-weight: 800;
+      font-size: 0.9rem;
+      cursor: pointer;
       display: flex;
-      overflow-x: auto;
+      align-items: center;
       gap: 8px;
-      padding: 12px 14px;
-      background-color: var(--yellow-bright);
-      border-bottom: 2px solid #e0b000;
+      box-shadow: 3px 3px 0 var(--ink-dark);
+      transition: transform 0.1s;
+    }
+
+    .top-cart-btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0 var(--ink-dark);
+    }
+
+    .cart-badge {
+      background-color: var(--red-brand);
+      color: #fff;
+      border-radius: 99px;
+      padding: 1px 8px;
+      font-size: 0.8rem;
+      border: 1.5px solid var(--ink-dark);
+    }
+
+    /* ================= BARRA DE CATEGORÍAS ================= */
+    .nav-wrapper {
+      background-color: var(--yellow-mark);
+      border-bottom: 3px solid var(--ink-dark);
+      padding: 10px 14px;
+      overflow-x: auto;
+      white-space: nowrap;
       scrollbar-width: none;
     }
 
-    nav.category-nav::-webkit-scrollbar {
+    .nav-wrapper::-webkit-scrollbar {
       display: none;
     }
 
-    nav.category-nav a {
-      text-decoration: none;
-      color: var(--red-dark);
-      background-color: var(--white);
-      border: 2px solid var(--red-primary);
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      font-weight: 800;
-      white-space: nowrap;
-      box-shadow: 0 2px 0 var(--red-primary);
-      transition: transform 0.1s, background-color 0.2s;
-    }
-
-    nav.category-nav a:active {
-      transform: translateY(2px);
-      box-shadow: none;
-    }
-
-    nav.category-nav a:hover {
-      background-color: var(--red-primary);
-      color: var(--white);
-    }
-
-    /* CONTENEDOR PRINCIPAL */
-    main {
-      max-width: 720px;
+    .nav-list {
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 16px 14px;
+      display: flex;
+      gap: 8px;
     }
 
-    section {
-      margin-bottom: 34px;
+    .nav-pill {
+      text-decoration: none;
+      background-color: #fff;
+      color: var(--ink-dark);
+      border: 2px solid var(--ink-dark);
+      padding: 6px 14px;
+      border-radius: 99px;
+      font-weight: 800;
+      font-size: 0.85rem;
+      box-shadow: 2px 2px 0 var(--ink-dark);
+      transition: all 0.15s;
+    }
+
+    .nav-pill:hover {
+      background-color: var(--red-brand);
+      color: #fff;
+    }
+
+    /* ================= CONTENEDOR PRINCIPAL ================= */
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px 16px;
+    }
+
+    .menu-section {
+      margin-bottom: 40px;
       scroll-margin-top: 90px;
     }
 
-    /* Títulos estilo carta impresa */
     .section-header {
-      text-align: center;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 10px;
     }
 
     .section-title {
-      font-family: 'Fredoka', sans-serif;
-      display: inline-block;
-      font-size: 1.6rem;
-      font-weight: 700;
-      color: var(--red-primary);
+      font-size: 1.75rem;
+      color: var(--red-brand);
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      text-shadow: 1px 1px 0px var(--yellow-bright);
+      background: linear-gradient(transparent 55%, var(--yellow-mark) 55%);
+      padding: 0 6px;
+      display: inline-block;
     }
 
-    .section-subtitle {
+    .section-note {
       font-size: 0.88rem;
       font-weight: 700;
-      color: var(--blue-table);
-      margin-top: 2px;
+      color: var(--ink-muted);
     }
 
-    /* TARJETAS DE PRODUCTOS */
-    .card {
-      background-color: var(--white);
-      border: 2px solid #f0e6d2;
-      border-radius: 14px;
-      padding: 14px;
-      margin-bottom: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
-      position: relative;
+    /* Grilla responsiva: 1 col en teléfono, 2 o 3 en computadora */
+    .items-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 16px;
     }
 
-    /* Etiqueta resaltada amarilla como en la carta */
-    .item-name-highlight {
+    /* ================= TARJETAS DE PRODUCTO ================= */
+    .dish-card {
+      background-color: var(--bg-card);
+      border: 2.5px solid var(--ink-dark);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 4px 4px 0 var(--ink-dark);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.15s;
+    }
+
+    .dish-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .dish-card.special-card {
+      background-color: #fffdf5;
+      border: 3px solid var(--red-brand);
+      box-shadow: 5px 5px 0 var(--red-brand);
+    }
+
+    /* Estilo título resaltado en amarillo como en la carta física */
+    .dish-title-highlight {
       display: inline-block;
-      background-color: var(--yellow-bright);
-      color: var(--text-dark);
-      font-weight: 900;
+      background-color: var(--yellow-mark);
+      color: var(--ink-dark);
+      font-weight: 800;
       font-size: 1.05rem;
       padding: 2px 10px;
       border-radius: 6px;
+      border: 1.5px solid var(--ink-dark);
+      margin-bottom: 8px;
       text-transform: uppercase;
-      margin-bottom: 6px;
     }
 
-    .item-header {
+    .dish-card.special-card .dish-title-highlight {
+      background-color: var(--red-brand);
+      color: #fff;
+    }
+
+    .dish-desc {
+      font-size: 0.88rem;
+      color: var(--ink-muted);
+      font-weight: 500;
+      margin-bottom: 14px;
+    }
+
+    .dish-quote {
+      display: block;
+      margin-top: 6px;
+      font-weight: 800;
+      color: var(--red-brand);
+      font-style: italic;
+    }
+
+    /* Opciones y botones de agregar */
+    .variants-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: auto;
+      padding-top: 10px;
+      border-top: 2px dashed #e2d9c8;
+    }
+
+    .variant-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: var(--bg-paper);
+      border: 1.5px solid var(--ink-dark);
+      border-radius: 10px;
+      padding: 6px 10px;
+    }
+
+    .variant-label {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--ink-dark);
+    }
+
+    .variant-action {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .variant-price {
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: var(--red-brand);
+    }
+
+    .add-btn {
+      background-color: var(--yellow-mark);
+      color: var(--ink-dark);
+      border: 2px solid var(--ink-dark);
+      border-radius: 8px;
+      padding: 4px 10px;
+      font-weight: 800;
+      font-size: 0.8rem;
+      cursor: pointer;
+      box-shadow: 2px 2px 0 var(--ink-dark);
+      transition: all 0.1s;
+    }
+
+    .add-btn:hover {
+      background-color: var(--red-brand);
+      color: #fff;
+    }
+
+    .add-btn:active {
+      transform: translate(1px, 1px);
+      box-shadow: 1px 1px 0 var(--ink-dark);
+    }
+
+    /* ================= BOTÓN FLOTANTE WHATSAPP (ESQUINA INFERIOR IZQUIERDA) ================= */
+    .wa-float-left {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      z-index: 950;
+      background-color: var(--green-wa);
+      color: #fff;
+      text-decoration: none;
+      border: 3px solid var(--ink-dark);
+      border-radius: 99px;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 800;
+      font-size: 0.9rem;
+      box-shadow: 4px 4px 0 var(--ink-dark);
+      transition: transform 0.15s, background-color 0.15s;
+    }
+
+    .wa-float-left:hover {
+      background-color: var(--green-wa-dark);
+      transform: scale(1.03);
+    }
+
+    .wa-float-left svg {
+      width: 24px;
+      height: 24px;
+      fill: currentColor;
+      flex-shrink: 0;
+    }
+
+    /* ================= BARRA INFERIOR RESUMEN DE CARRITO (MÓVIL/PC) ================= */
+    .bottom-cart-bar {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 940;
+      background-color: var(--red-brand);
+      color: #fff;
+      border: 3px solid var(--ink-dark);
+      border-radius: 99px;
+      padding: 10px 18px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: none; /* Se muestra cuando hay productos */
+      align-items: center;
+      gap: 10px;
+      box-shadow: 4px 4px 0 var(--ink-dark);
+    }
+
+    .bottom-cart-bar.visible {
+      display: flex;
+    }
+
+    /* ================= PANEL LATERAL DEL CARRITO (DRAWER) ================= */
+    .cart-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(31, 26, 23, 0.65);
+      z-index: 1000;
+      display: none;
+      justify-content: flex-end;
+    }
+
+    .cart-overlay.open {
+      display: flex;
+    }
+
+    .cart-drawer {
+      background-color: var(--bg-paper);
+      width: 100%;
+      max-width: 420px;
+      height: 100%;
+      border-left: 4px solid var(--ink-dark);
+      display: flex;
+      flex-direction: column;
+      animation: slideIn 0.22s ease-out;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(100%); }
+      to { transform: translateX(0); }
+    }
+
+    .cart-header {
+      background-color: var(--yellow-mark);
+      padding: 16px;
+      border-bottom: 3px solid var(--ink-dark);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cart-header h2 {
+      font-size: 1.4rem;
+      color: var(--ink-dark);
+    }
+
+    .close-cart {
+      background: var(--red-brand);
+      color: #fff;
+      border: 2px solid var(--ink-dark);
+      border-radius: 8px;
+      width: 34px;
+      height: 34px;
+      font-weight: 800;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+
+    .cart-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+    }
+
+    .empty-cart-msg {
+      text-align: center;
+      padding: 40px 16px;
+      color: var(--ink-muted);
+      font-weight: 600;
+    }
+
+    .cart-item {
+      background: #fff;
+      border: 2px solid var(--ink-dark);
+      border-radius: 12px;
+      padding: 10px 12px;
+      margin-bottom: 10px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 10px;
-      margin-bottom: 4px;
+      box-shadow: 2px 2px 0 var(--ink-dark);
     }
 
-    .item-name {
-      font-size: 1.08rem;
-      font-weight: 900;
-      color: var(--text-dark);
-      text-transform: uppercase;
-    }
-
-    .item-desc {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-
-    /* Precio individual resaltado en amarillo */
-    .price-pill {
-      background-color: var(--yellow-bright);
-      color: var(--red-dark);
-      border: 2px solid var(--red-primary);
-      font-size: 1.05rem;
-      font-weight: 900;
-      padding: 3px 10px;
-      border-radius: 10px;
-      white-space: nowrap;
-    }
-
-    /* TABLA DE PRECIOS ESTILO CARTA (Azul y Amarillo) */
-    .multi-prices {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 6px;
-      margin-top: 8px;
-    }
-
-    .multi-prices.two-cols {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .price-box {
-      border: 2px solid var(--blue-table);
-      border-radius: 8px;
-      overflow: hidden;
-      text-align: center;
-      background-color: var(--white);
-    }
-
-    .price-box .label {
-      display: block;
-      background-color: var(--blue-table);
-      color: var(--white);
-      font-size: 0.72rem;
+    .cart-item-info h4 {
+      font-size: 0.92rem;
       font-weight: 800;
-      text-transform: uppercase;
-      padding: 3px 2px;
-      letter-spacing: 0.3px;
     }
 
-    .price-box .val {
-      display: block;
-      font-size: 1rem;
-      font-weight: 900;
-      color: var(--red-primary);
-      padding: 5px 2px;
-      background-color: var(--blue-light);
-    }
-
-    /* TARJETAS DESTACADAS (Especialidades / Exclusivos) */
-    .card.featured {
-      border: 3px solid var(--red-primary);
-      background: linear-gradient(180deg, #fffdf0 0%, #ffffff 100%);
-      box-shadow: 0 6px 14px rgba(214, 31, 38, 0.14);
-    }
-
-    .badge {
-      display: inline-block;
-      background-color: var(--red-primary);
-      color: var(--yellow-bright);
-      font-size: 0.75rem;
-      font-weight: 900;
-      padding: 3px 10px;
-      border-radius: 20px;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-      letter-spacing: 0.5px;
-    }
-
-    .slogan-box {
-      background-color: var(--yellow-light);
-      border-left: 4px solid var(--red-primary);
-      padding: 6px 10px;
-      border-radius: 6px;
-      font-weight: 800;
-      font-style: italic;
-      color: var(--red-dark);
-      font-size: 0.88rem;
-      margin-top: 8px;
-    }
-
-    footer {
-      text-align: center;
-      background-color: var(--red-primary);
-      color: var(--white);
-      padding: 18px 16px;
-      margin-top: 20px;
-      border-top: 4px solid var(--yellow-bright);
+    .cart-item-info span {
       font-size: 0.85rem;
+      color: var(--red-brand);
       font-weight: 700;
     }
 
-    footer span {
-      color: var(--yellow-bright);
+    .qty-controls {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .qty-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      border: 2px solid var(--ink-dark);
+      background: var(--yellow-mark);
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .qty-val {
+      font-weight: 800;
+      min-width: 20px;
+      text-align: center;
+    }
+
+    .cart-footer {
+      background: #fff;
+      border-top: 3px solid var(--ink-dark);
+      padding: 16px;
+    }
+
+    .customer-fields {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .customer-fields input, .customer-fields select {
+      width: 100%;
+      padding: 9px 12px;
+      border: 2px solid var(--ink-dark);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.88rem;
+      font-weight: 600;
+      background-color: var(--bg-paper);
+    }
+
+    .cart-total-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .checkout-wa-btn {
+      width: 100%;
+      background-color: var(--green-wa);
+      color: #fff;
+      border: 3px solid var(--ink-dark);
+      border-radius: 12px;
+      padding: 12px;
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 3px 3px 0 var(--ink-dark);
+    }
+
+    .checkout-wa-btn:hover {
+      background-color: var(--green-wa-dark);
+    }
+
+    /* Notificación rápida al agregar */
+    .toast {
+      position: fixed;
+      top: 82px;
+      right: 20px;
+      background-color: var(--ink-dark);
+      color: var(--yellow-mark);
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 0.85rem;
+      z-index: 1100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+    }
+
+    .toast.show {
+      opacity: 1;
+    }
+
+    @media (max-width: 600px) {
+      .brand-title h1 { font-size: 1.2rem; }
+      .wa-float-left span { display: none; } /* En móvil compacto deja solo el ícono de WA */
+      .wa-float-left { padding: 12px; }
     }
   </style>
 </head>
@@ -323,419 +597,587 @@
 
   <!-- ENCABEZADO CON LOGO EN LA ESQUINA SUPERIOR IZQUIERDA -->
   <header>
-    <div class="logo-container">
-      <!-- REEMPLAZA src CON EL URL DE TU LOGO -->
-      <img 
-        src="https://via.placeholder.com/150/ffcb05/d61f26?text=PK" 
-        alt="Logo Pamper's King"
-        onerror="this.src='https://via.placeholder.com/150/ffcb05/d61f26?text=PK'">
+    <div class="header-left">
+      <div class="logo-box">
+        <!-- CAMBIA EL ENLACE DE src POR LA URL DE TU LOGO -->
+        <img 
+          src="https://via.placeholder.com/150/ffd60a/1f1a17?text=PK" 
+          alt="Logo Pamper's King"
+          onerror="this.src='https://via.placeholder.com/150/ffd60a/1f1a17?text=PK'">
+      </div>
+      <div class="brand-title">
+        <h1>Pamper's King</h1>
+        <span>CARTA DIGITAL • PEDIDOS ONLINE</span>
+      </div>
     </div>
-    <div class="brand-info">
-      <h1>Pamper's King</h1>
-      <span>¡El Rey del Sabor!</span>
-    </div>
+
+    <button class="top-cart-btn" onclick="toggleCart()">
+      🛒 Mi Pedido <span class="cart-badge" id="top-cart-count">0</span>
+    </button>
   </header>
 
-  <!-- NAVEGACIÓN RÁPIDA -->
-  <nav class="category-nav">
-    <a href="#sandwiches">🍔 Sándwiches</a>
-    <a href="#especiales">👑 Especiales</a>
-    <a href="#miga">🥪 De Miga y Tostados</a>
-    <a href="#papas">🍟 Papas</a>
-    <a href="#pizzas">🍕 Pizzas</a>
-  </nav>
+  <!-- NAVEGACIÓN POR CATEGORÍAS -->
+  <div class="nav-wrapper">
+    <nav class="nav-list">
+      <a href="#sec-sandwiches" class="nav-pill">🍔 Sándwiches</a>
+      <a href="#sec-especiales" class="nav-pill">👑 Especiales & Al Plato</a>
+      <a href="#sec-miga" class="nav-pill">🥪 Miga & Tostados</a>
+      <a href="#sec-papas" class="nav-pill">🍟 Papas</a>
+      <a href="#sec-pizzas" class="nav-pill">🍕 Pizzas</a>
+    </nav>
+  </div>
 
-  <main>
+  <!-- TOAST DE CONFIRMACIÓN -->
+  <div class="toast" id="toast">¡Agregado a tu pedido!</div>
 
-    <!-- SECCIÓN 1: SÁNDWICHES -->
-    <section id="sandwiches">
-      <div class="section-header">
-        <h2 class="section-title">Sándwiches</h2>
-        <p class="section-subtitle">(Solo cambia el bife)</p>
+  <!-- CONTENIDO DE LA CARTA -->
+  <main id="menu-container"></main>
+
+  <!-- BOTÓN FLOTANTE ESTÁTICO EN LA ESQUINA INFERIOR IZQUIERDA -->
+  <a 
+    href="https://wa.me/5493644135401?text=Hola%20Pamper's%20King!%20Quisiera%20hacer%20una%20consulta." 
+    target="_blank" 
+    rel="noopener noreferrer" 
+    class="wa-float-left"
+    title="Escribinos por WhatsApp">
+    <svg viewBox="0 0 32 32"><path d="M16 .5C7.4.5.5 7.4.5 16c0 2.7.7 5.4 2.1 7.8L.4 31.6l8-2.1c2.3 1.2 4.9 1.9 7.6 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.5 16 .5zm0 28.3c-2.4 0-4.7-.6-6.7-1.8l-.5-.3-4.7 1.2 1.3-4.6-.3-.5c-1.3-2.1-2-4.5-2-7 0-7.2 5.8-13 13-13s13 5.8 13 13-5.9 13-13.1 13zm7.1-9.7c-.4-.2-2.3-1.1-2.7-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.3-.4.3-.8.1-.4-.2-1.6-.6-3.1-1.9-1.1-1-1.9-2.3-2.1-2.7-.2-.4 0-.6.2-.8.2-.2.4-.4.6-.7.2-.2.3-.4.4-.6.1-.2.1-.5 0-.7-.1-.2-.9-2.1-1.2-2.9-.3-.8-.6-.7-.9-.7h-.7c-.3 0-.7.1-1 .5-.4.4-1.4 1.3-1.4 3.3s1.4 3.8 1.6 4.1c.2.3 2.8 4.2 6.7 5.9.9.4 1.7.6 2.2.8.9.3 1.8.3 2.5.2.8-.1 2.3-.9 2.6-1.8.3-.9.3-1.7.2-1.8-.1-.2-.4-.3-.8-.5z"/></svg>
+    <span>WhatsApp Directo</span>
+  </a>
+
+  <!-- BOTÓN FLOTANTE INFERIOR DERECHO PARA ABRIR EL PEDIDO -->
+  <button class="bottom-cart-bar" id="bottom-cart-bar" onclick="toggleCart()">
+    Ver mi pedido (<span id="bottom-cart-count">0</span>) — <span id="bottom-cart-total">$0</span>
+  </button>
+
+  <!-- PANEL LATERAL DEL CARRITO -->
+  <div class="cart-overlay" id="cart-overlay" onclick="closeCartOnBg(event)">
+    <div class="cart-drawer">
+      <div class="cart-header">
+        <h2>Tu Pedido 🍔</h2>
+        <button class="close-cart" onclick="toggleCart()">✕</button>
       </div>
 
-      <div class="card">
-        <span class="item-name-highlight">Común</span>
-        <div class="item-desc">Lechuga - Tomate - Queso - Mayonesa</div>
-        <div class="multi-prices">
-          <div class="price-box"><span class="label">Hamb.</span><span class="val">$9.000</span></div>
-          <div class="price-box"><span class="label">Lomo</span><span class="val">$11.000</span></div>
-          <div class="price-box"><span class="label">Milanesa</span><span class="val">$12.000</span></div>
+      <div class="cart-body" id="cart-items-container">
+        <!-- Ítems dinámicos -->
+      </div>
+
+      <div class="cart-footer" id="cart-footer" style="display: none;">
+        <div class="customer-fields">
+          <input type="text" id="cust-name" placeholder="Tu nombre (Ej: Juan)">
+          <select id="cust-delivery">
+            <option value="Retiro en el local">Retiro en el local</option>
+            <option value="Envío a domicilio">Envío a domicilio</option>
+          </select>
+          <input type="text" id="cust-address" placeholder="Dirección / Notas (opcional)">
         </div>
-      </div>
 
-      <div class="card">
-        <span class="item-name-highlight">Napole</span>
-        <div class="item-desc">Lechuga - Tomate - Queso - Mayonesa - Jamón Cocido</div>
-        <div class="multi-prices">
-          <div class="price-box"><span class="label">Hamb.</span><span class="val">$10.000</span></div>
-          <div class="price-box"><span class="label">Lomo</span><span class="val">$11.500</span></div>
-          <div class="price-box"><span class="label">Milanesa</span><span class="val">$12.500</span></div>
+        <div class="cart-total-row">
+          <span>Total estimado:</span>
+          <span id="cart-total-price" style="color: var(--red-brand);">$0</span>
         </div>
+
+        <button class="checkout-wa-btn" onclick="sendOrderToWhatsApp()">
+          Enviar pedido por WhatsApp
+        </button>
       </div>
+    </div>
+  </div>
 
-      <div class="card">
-        <span class="item-name-highlight">Especial</span>
-        <div class="item-desc">Lechuga - Mayonesa - Tomate - Queso y Huevo</div>
-        <div class="multi-prices">
-          <div class="price-box"><span class="label">Hamb.</span><span class="val">$11.000</span></div>
-          <div class="price-box"><span class="label">Lomo</span><span class="val">$12.000</span></div>
-          <div class="price-box"><span class="label">Milanesa</span><span class="val">$13.000</span></div>
-        </div>
-      </div>
+  <script>
+    // NÚMERO DE WHATSAPP CONFIGURADO (+54 9 364 413-5401)
+    const WHATSAPP_PHONE = "5493644135401";
 
-      <div class="card">
-        <span class="item-name-highlight">Americanos</span>
-        <div class="item-desc">Lechuga - Tomate - Queso - Mayonesa - Huevos - Aceitunas - Ajíes - Morrones</div>
-        <div class="multi-prices">
-          <div class="price-box"><span class="label">Hamb.</span><span class="val">$12.000</span></div>
-          <div class="price-box"><span class="label">Lomo</span><span class="val">$13.000</span></div>
-          <div class="price-box"><span class="label">Milanesa</span><span class="val">$14.000</span></div>
-        </div>
-      </div>
+    // BASE DE DATOS COMPLETA DEL MENÚ DE PAMPER'S KING
+    const menuData = [
+      {
+        id: "sec-sandwiches",
+        title: "Sándwiches",
+        note: "Solo cambia el bife (Hamburguesa, Lomo o Milanesa)",
+        items: [
+          {
+            name: "Común",
+            desc: "Lechuga, tomate, queso y mayonesa.",
+            variants: [
+              { label: "Hamburguesa", price: 9000 },
+              { label: "Lomo", price: 11000 },
+              { label: "Milanesa", price: 12000 }
+            ]
+          },
+          {
+            name: "Napole",
+            desc: "Lechuga, tomate, queso, mayonesa y jamón cocido.",
+            variants: [
+              { label: "Hamburguesa", price: 10000 },
+              { label: "Lomo", price: 11500 },
+              { label: "Milanesa", price: 12500 }
+            ]
+          },
+          {
+            name: "Especial",
+            desc: "Lechuga, mayonesa, tomate, queso y huevo.",
+            variants: [
+              { label: "Hamburguesa", price: 11000 },
+              { label: "Lomo", price: 12000 },
+              { label: "Milanesa", price: 13000 }
+            ]
+          },
+          {
+            name: "Americanos",
+            desc: "Lechuga, tomate, queso, mayonesa, huevos, aceitunas, ajíes y morrones.",
+            variants: [
+              { label: "Hamburguesa", price: 12000 },
+              { label: "Lomo", price: 13000 },
+              { label: "Milanesa", price: 14000 }
+            ]
+          },
+          {
+            name: "Lomo Criollo",
+            desc: "Dos bifes con pan común. ¡RIQUÍSIMO!",
+            variants: [
+              { label: "Común", price: 16000 },
+              { label: "Napole", price: 17000 },
+              { label: "Especial", price: 19000 }
+            ]
+          },
+          {
+            name: "Criollos de Mila",
+            desc: "Sándwich criollo abundante con milanesa.",
+            variants: [
+              { label: "Común", price: 18000 },
+              { label: "Napo", price: 19000 },
+              { label: "Especial", price: 21000 }
+            ]
+          }
+        ]
+      },
+      {
+        id: "sec-especiales",
+        title: "Especialidades de la Casa",
+        note: "Creaciones exclusivas y platos gigantes",
+        items: [
+          {
+            name: "Master Sándwiches al Plato (Exclusivo)",
+            desc: "Lechuga, tomate, queso, mayonesa, huevos, jamón, aceitunas, morrones, zanahorias, remolacha, porotos, arveja y papas fritas.",
+            special: true,
+            variants: [
+              { label: "Hamburguesa", price: 14000 },
+              { label: "Lomo", price: 16000 },
+              { label: "Milanesa", price: 19000 }
+            ]
+          },
+          {
+            name: "Milanesa Pamper Gigante",
+            desc: "Dos milanesas grandes, 2 huevos, queso, jamón, tres rodajas de tomate, lechuga, mostaza, pan y porción de papas fritas.",
+            quote: "“Vos solo no lo terminás... ¡es para dos!”",
+            special: true,
+            variants: [
+              { label: "Entera (Para dos)", price: 25000 },
+              { label: "Media (1/2)", price: 15000 }
+            ]
+          },
+          {
+            name: "Barroluco — ¡Único!",
+            desc: "Nuestra creación: Igual al triple, más 2 bifes de lomo.",
+            special: true,
+            variants: [
+              { label: "Unidad", price: 18000 }
+            ]
+          }
+        ]
+      },
+      {
+        id: "sec-miga",
+        title: "Sándwiches de Miga y Tostados",
+        note: "Frescos y tostados a la plancha",
+        items: [
+          {
+            name: "Sándwich de Atún",
+            desc: "Queso, tomates en rodajas y mayonesa.",
+            variants: [{ label: "Unidad", price: 11000 }]
+          },
+          {
+            name: "Sándwich de Miga",
+            desc: "Queso, jamón cocido y mayonesa.",
+            variants: [{ label: "Unidad", price: 10000 }]
+          },
+          {
+            name: "Triple Común",
+            desc: "Queso, jamón, mayonesa, tomate y lechuga.",
+            variants: [{ label: "Unidad", price: 11000 }]
+          },
+          {
+            name: "Triple Americano",
+            desc: "Queso, jamón, mayonesa, tomate, lechuga, ajíes, morrones y aceitunas.",
+            variants: [{ label: "Unidad", price: 12000 }]
+          },
+          {
+            name: "Frío Vegetariano",
+            desc: "Mayonesa, queso y morrones.",
+            variants: [{ label: "Unidad", price: 10000 }]
+          },
+          {
+            name: "Tostado Carlito (a la plancha)",
+            desc: "Clásico carlito dorado a la plancha.",
+            variants: [{ label: "Unidad", price: 11000 }]
+          },
+          {
+            name: "Tostado Triple (Común)",
+            desc: "Triple tostado calentito.",
+            variants: [{ label: "Unidad", price: 12000 }]
+          },
+          {
+            name: "Tostado Triple (Americano)",
+            desc: "Triple americano tostado.",
+            variants: [{ label: "Unidad", price: 13000 }]
+          }
+        ]
+      },
+      {
+        id: "sec-papas",
+        title: "Papas",
+        note: "Acompañamientos crocantes",
+        items: [
+          {
+            name: "Papas Rejillas",
+            desc: "Porción de papas rejillas crocantes (consultar adicional con queso cheddar).",
+            variants: [{ label: "Porción", price: 5000 }]
+          }
+        ]
+      },
+      {
+        id: "sec-pizzas",
+        title: "Pizzas",
+        note: "Chica (1/4 Mt.) | Grande (1/2 Mt.)",
+        items: [
+          {
+            name: "Simple de Muzzarella",
+            desc: "Muzzarella, salsa, orégano y oliva.",
+            variants: [
+              { label: "Chica (1/4 Mt.)", price: 8000 },
+              { label: "Grande (1/2 Mt.)", price: 16000 }
+            ]
+          },
+          {
+            name: "Napolitana",
+            desc: "Muzzarella, salsa, orégano, jamón y oliva.",
+            variants: [
+              { label: "Chica (1/4 Mt.)", price: 8500 },
+              { label: "Grande (1/2 Mt.)", price: 17000 }
+            ]
+          },
+          {
+            name: "Napolitana Súper",
+            desc: "Muzzarella, salsa, jamón, rodajas de tomate y ajo.",
+            variants: [
+              { label: "Chica (1/4 Mt.)", price: 9000 },
+              { label: "Grande (1/2 Mt.)", price: 18000 }
+            ]
+          },
+          {
+            name: "Especial",
+            desc: "Muzzarella, salsa, jamón, oliva, morrones y aceitunas.",
+            variants: [
+              { label: "Chica (1/4 Mt.)", price: 9000 },
+              { label: "Grande (1/2 Mt.)", price: 18000 }
+            ]
+          },
+          {
+            name: "A la Crema (Humita)",
+            desc: "Muzzarella, salsa y crema de choclo.",
+            variants: [
+              { label: "Chica (1/4 Mt.)", price: 8500 },
+              { label: "Grande (1/2 Mt.)", price: 17000 }
+            ]
+          },
+          {
+            name: "Fugazzeta",
+            desc: "Muzzarella, salsa, cebolla, oliva y orégano.",
+            variants: [
+              { label: "Chica (1/4 Mt.)", price: 8500 },
+              { label: "Grande (1/2 Mt.)", price: 17000 }
+            ]
+          },
+          {
+            name: "A la Española (Picante)",
+            desc: "Muzzarella, salsa muy picante, porotos y salchicha.",
+            variants: [
+              { label: "Chica (1/4 Mt.)", price: 9000 },
+              { label: "Grande (1/2 Mt.)", price: 18000 }
+            ]
+          },
+          {
+            name: "A la Provenzal",
+            desc: "Salsa, ajo, perejil, oliva y orégano.",
+            variants: [
+              { label: "Chica (1/4 Mt.)", price: 8500 },
+              { label: "Grande (1/2 Mt.)", price: 17000 }
+            ]
+          },
+          {
+            name: "Al Roquefort (Fuerte)",
+            desc: "Roquefort, salsa, oliva y orégano.",
+            variants: [
+              { label: "Chica (1/4 Mt.)", price: 10000 },
+              { label: "Grande (1/2 Mt.)", price: 20000 }
+            ]
+          },
+          {
+            name: "Calabresa",
+            desc: "Muzzarella, salsa, picante longaniza, oliva y orégano.",
+            variants: [
+              { label: "Chica (1/4 Mt.)", price: 10000 },
+              { label: "Grande (1/2 Mt.)", price: 20000 }
+            ]
+          },
+          {
+            name: "Gran Marino",
+            desc: "(Muy Rica) Salsa, atún y cebolla.",
+            variants: [
+              { label: "Chica (1/4 Mt.)", price: 10000 },
+              { label: "Grande (1/2 Mt.)", price: 20000 }
+            ]
+          },
+          {
+            name: "Primavera",
+            desc: "(Recopilación) Roquefort, calabresa king y crema especial.",
+            variants: [
+              { label: "Chica (1/4 Mt.)", price: 10500 },
+              { label: "Grande (1/2 Mt.)", price: 21000 }
+            ]
+          },
+          {
+            name: "Pizza Loca",
+            desc: "Muzzarella, salsa, trocitos de longaniza, roquefort y ajíes.",
+            variants: [
+              { label: "Chica (1/4 Mt.)", price: 10500 },
+              { label: "Grande (1/2 Mt.)", price: 21000 }
+            ]
+          },
+          {
+            name: "Gran King",
+            desc: "Muzzarella, salsa, jamón, aceitunas, morrones, huevo duro, tomate en rodajas, oliva y orégano.",
+            variants: [
+              { label: "Chica (1/4 Mt.)", price: 10500 },
+              { label: "Grande (1/2 Mt.)", price: 21000 }
+            ]
+          },
+          {
+            name: "De Palmitos",
+            desc: "Muzzarella, salsa, palmitos, oliva y orégano.",
+            variants: [
+              { label: "Chica (1/4 Mt.)", price: 10500 },
+              { label: "Grande (1/2 Mt.)", price: 21000 }
+            ]
+          },
+          {
+            name: "Alemana",
+            desc: "Muzzarella, salsa, oliva, panceta y salchichas.",
+            variants: [
+              { label: "Chica (1/4 Mt.)", price: 10500 },
+              { label: "Grande (1/2 Mt.)", price: 21000 }
+            ]
+          },
+          {
+            name: "Kabaret",
+            desc: "Muzzarella, salsa, oliva, panceta, cebolla y huevo.",
+            variants: [
+              { label: "Chica (1/4 Mt.)", price: 10500 },
+              { label: "Grande (1/2 Mt.)", price: 21000 }
+            ]
+          },
+          {
+            name: "Italiana",
+            desc: "Muzzarella, salsa, oliva, tomate, morrones y calabresa.",
+            variants: [
+              { label: "Chica (1/4 Mt.)", price: 10500 },
+              { label: "Grande (1/2 Mt.)", price: 21000 }
+            ]
+          },
+          {
+            name: "Rúcula",
+            desc: "Pizza con rúcula fresca.",
+            variants: [
+              { label: "Chica (1/4 Mt.)", price: 10000 },
+              { label: "Grande (1/2 Mt.)", price: 20000 }
+            ]
+          },
+          {
+            name: "Champiñones",
+            desc: "Pizza con champiñones.",
+            variants: [
+              { label: "Chica (1/4 Mt.)", price: 10500 },
+              { label: "Grande (1/2 Mt.)", price: 21000 }
+            ]
+          },
+          {
+            name: "Agregado de Anchoas",
+            desc: "Adicional extra para tu pizza.",
+            special: true,
+            variants: [
+              { label: "Chica", price: 6000 },
+              { label: "Grande", price: 12000 }
+            ]
+          }
+        ]
+      }
+    ];
 
-      <div class="card">
-        <span class="item-name-highlight">Lomo Criollo</span>
-        <div class="item-desc">Dos bifes c/ pan común. ¡RIQUÍSIMO!</div>
-        <div class="multi-prices">
-          <div class="price-box"><span class="label">Común</span><span class="val">$16.000</span></div>
-          <div class="price-box"><span class="label">Napole</span><span class="val">$17.000</span></div>
-          <div class="price-box"><span class="label">Especial</span><span class="val">$19.000</span></div>
-        </div>
-      </div>
+    let cart = [];
 
-      <div class="card">
-        <span class="item-name-highlight">Criollos de Mila</span>
-        <div class="item-desc">Sándwich criollo de milanesa</div>
-        <div class="multi-prices">
-          <div class="price-box"><span class="label">Común</span><span class="val">$18.000</span></div>
-          <div class="price-box"><span class="label">Napo</span><span class="val">$19.000</span></div>
-          <div class="price-box"><span class="label">Especial</span><span class="val">$21.000</span></div>
-        </div>
-      </div>
-    </section>
+    function formatMoney(num) {
+      return "$" + num.toLocaleString("es-AR");
+    }
 
-    <!-- SECCIÓN 2: ESPECIALIDADES DE LA CASA -->
-    <section id="especiales">
-      <div class="section-header">
-        <h2 class="section-title">Especiales y Al Plato</h2>
-        <p class="section-subtitle">¡Los gigantes de Pamper's King!</p>
-      </div>
+    // Renderizar la carta en pantalla
+    function renderMenu() {
+      const container = document.getElementById("menu-container");
+      container.innerHTML = menuData.map(section => `
+        <section class="menu-section" id="${section.id}">
+          <div class="section-header">
+            <h2 class="section-title">${section.title}</h2>
+            <span class="section-note">${section.note}</span>
+          </div>
+          <div class="items-grid">
+            ${section.items.map(item => `
+              <article class="dish-card ${item.special ? 'special-card' : ''}">
+                <div>
+                  <span class="dish-title-highlight">${item.name}</span>
+                  <p class="dish-desc">
+                    ${item.desc}
+                    ${item.quote ? `<span class="dish-quote">${item.quote}</span>` : ''}
+                  </p>
+                </div>
+                <div class="variants-list">
+                  ${item.variants.map(v => {
+                    const fullTitle = item.variants.length > 1 ? `${item.name} (${v.label})` : item.name;
+                    const safeTitle = fullTitle.replace(/'/g, "\\'");
+                    return `
+                      <div class="variant-row">
+                        <span class="variant-label">${v.label}</span>
+                        <div class="variant-action">
+                          <span class="variant-price">${formatMoney(v.price)}</span>
+                          <button class="add-btn" onclick="addToCart('${safeTitle}', ${v.price})">+ Pedir</button>
+                        </div>
+                      </div>
+                    `;
+                  }).join('')}
+                </div>
+              </article>
+            `).join('')}
+          </div>
+        </section>
+      `).join('');
+    }
 
-      <div class="card featured">
-        <span class="badge">★ Master (Exclusivo) ★</span>
-        <div class="item-name">Sándwiches al Plato</div>
-        <div class="item-desc">Lechuga - Tomate - Queso - Mayonesa - Huevos - Jamón - Aceitunas - Morrones - Zanahorias - Remolacha - Porotos - Arveja - Papas fritas</div>
-        <div class="multi-prices">
-          <div class="price-box"><span class="label">Hamburguesa</span><span class="val">$14.000</span></div>
-          <div class="price-box"><span class="label">Lomo</span><span class="val">$16.000</span></div>
-          <div class="price-box"><span class="label">Milanesa</span><span class="val">$19.000</span></div>
-        </div>
-      </div>
+    // Agregar producto al carrito
+    function addToCart(name, price) {
+      const existing = cart.find(i => i.name === name);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ name, price, qty: 1 });
+      }
+      updateCartUI();
+      showToast(`+1 ${name}`);
+    }
 
-      <div class="card featured">
-        <span class="badge">🔥 Súper Bomba 🔥</span>
-        <div class="item-name">Milanesa Pamper Gigante</div>
-        <div class="item-desc">Dos Milanesas Grandes - 2 Huevos - Queso - Jamón - Tres rodajas de tomate - Lechuga - Mostaza - Pan - Porción de papas fritas</div>
-        <div class="multi-prices two-cols">
-          <div class="price-box"><span class="label">Entera</span><span class="val">$25.000</span></div>
-          <div class="price-box"><span class="label">1/2 Porción</span><span class="val">$15.000</span></div>
-        </div>
-        <div class="slogan-box">"Vos solo no lo terminás... ¡es para dos!"</div>
-      </div>
+    // Cambiar cantidad
+    function changeQty(index, delta) {
+      cart[index].qty += delta;
+      if (cart[index].qty <= 0) {
+        cart.splice(index, 1);
+      }
+      updateCartUI();
+    }
 
-      <div class="card featured">
-        <span class="badge">👑 Nuestra Creación - ¡Único!</span>
-        <div class="item-header">
-          <div class="item-name">Barroluco</div>
-          <div class="price-pill">$18.000</div>
-        </div>
-        <div class="item-desc">Igual al triple, más 2 bifes de lomo.</div>
-      </div>
-    </section>
+    // Actualizar interfaz del carrito
+    function updateCartUI() {
+      const totalItems = cart.reduce((acc, item) => acc + item.qty, 0);
+      const totalPrice = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
 
-    <!-- SECCIÓN 3: SÁNDWICHES DE MIGA Y TOSTADOS -->
-    <section id="miga">
-      <div class="section-header">
-        <h2 class="section-title">Sándwiches de Miga y Tostados</h2>
-        <p class="section-subtitle">Frescos o bien calentitos a la plancha</p>
-      </div>
+      document.getElementById("top-cart-count").textContent = totalItems;
+      document.getElementById("bottom-cart-count").textContent = totalItems;
+      document.getElementById("bottom-cart-total").textContent = formatMoney(totalPrice);
+      document.getElementById("cart-total-price").textContent = formatMoney(totalPrice);
 
-      <div class="card">
-        <div class="item-header">
-          <div class="item-name">Sándwich de Atún</div>
-          <div class="price-pill">$11.000</div>
-        </div>
-        <div class="item-desc">Queso - Tomates en rodajas - Mayonesa</div>
-      </div>
+      const bottomBar = document.getElementById("bottom-cart-bar");
+      if (totalItems > 0) {
+        bottomBar.classList.add("visible");
+      } else {
+        bottomBar.classList.remove("visible");
+      }
 
-      <div class="card">
-        <div class="item-header">
-          <div class="item-name">Sándwich de Miga</div>
-          <div class="price-pill">$10.000</div>
-        </div>
-        <div class="item-desc">Queso - Jamón cocido - Mayonesa</div>
-      </div>
+      const itemsContainer = document.getElementById("cart-items-container");
+      const footer = document.getElementById("cart-footer");
 
-      <div class="card">
-        <div class="item-header">
-          <div class="item-name">Triple Común</div>
-          <div class="price-pill">$11.000</div>
-        </div>
-        <div class="item-desc">Queso - Jamón - Mayonesa - Tomate - Lechuga</div>
-      </div>
+      if (cart.length === 0) {
+        itemsContainer.innerHTML = `<div class="empty-cart-msg">Tu pedido está vacío.<br>¡Elegí lo que más te guste de la carta! 🍔🍕</div>`;
+        footer.style.display = "none";
+      } else {
+        footer.style.display = "block";
+        itemsContainer.innerHTML = cart.map((item, idx) => `
+          <div class="cart-item">
+            <div class="cart-item-info">
+              <h4>${item.name}</h4>
+              <span>${formatMoney(item.price * item.qty)}</span>
+            </div>
+            <div class="qty-controls">
+              <button class="qty-btn" onclick="changeQty(${idx}, -1)">-</button>
+              <span class="qty-val">${item.qty}</span>
+              <button class="qty-btn" onclick="changeQty(${idx}, 1)">+</button>
+            </div>
+          </div>
+        `).join('');
+      }
+    }
 
-      <div class="card">
-        <div class="item-header">
-          <div class="item-name">Triple Americano</div>
-          <div class="price-pill">$12.000</div>
-        </div>
-        <div class="item-desc">Queso - Jamón - Mayonesa - Tomate - Lechuga - Ajíes - Morrones - Aceitunas</div>
-      </div>
+    // Enviar pedido armado a WhatsApp
+    function sendOrderToWhatsApp() {
+      if (cart.length === 0) return;
 
-      <div class="card">
-        <div class="item-header">
-          <div class="item-name">Frío Vegetariano</div>
-          <div class="price-pill">$10.000</div>
-        </div>
-        <div class="item-desc">Mayonesa - Queso - Morrones</div>
-      </div>
+      const custName = document.getElementById("cust-name").value.trim();
+      const deliveryType = document.getElementById("cust-delivery").value;
+      const address = document.getElementById("cust-address").value.trim();
 
-      <div class="card">
-        <div class="item-header">
-          <div class="item-name">Tostado Carlito (a la plancha)</div>
-          <div class="price-pill">$11.000</div>
-        </div>
-      </div>
+      let message = `¡Hola *Pamper's King*! Quiero hacer el siguiente pedido:\n\n`;
 
-      <div class="card">
-        <div class="item-header">
-          <div class="item-name">Tostado Triples (Común)</div>
-          <div class="price-pill">$12.000</div>
-        </div>
-      </div>
+      cart.forEach(item => {
+        message += `▪️ ${item.qty}x ${item.name} — ${formatMoney(item.price * item.qty)}\n`;
+      });
 
-      <div class="card">
-        <div class="item-header">
-          <div class="item-name">Tostado Triple (Americano)</div>
-          <div class="price-pill">$13.000</div>
-        </div>
-      </div>
-    </section>
+      const totalPrice = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
+      message += `\n*TOTAL ESTIMADO: ${formatMoney(totalPrice)}*\n`;
+      message += `🛵 *Modalidad:* ${deliveryType}\n`;
+      if (custName) message += `👤 *Nombre:* ${custName}\n`;
+      if (address) message += `📍 *Dirección / Notas:* ${address}\n`;
 
-    <!-- SECCIÓN 4: PAPAS -->
-    <section id="papas">
-      <div class="section-header">
-        <h2 class="section-title">Papas</h2>
-      </div>
-      <div class="card">
-        <div class="item-header">
-          <div class="item-name">Papas Rejillas</div>
-          <div class="price-pill">$5.000</div>
-        </div>
-        <div class="item-desc">Opción: Con queso cheddar (consultar precio)</div>
-      </div>
-    </section>
+      const encodedMsg = encodeURIComponent(message);
+      const waUrl = `https://wa.me/${WHATSAPP_PHONE}?text=${encodedMsg}`;
+      window.open(waUrl, "_blank");
+    }
 
-    <!-- SECCIÓN 5: PIZZAS -->
-    <section id="pizzas">
-      <div class="section-header">
-        <h2 class="section-title">Pizzas</h2>
-        <p class="section-subtitle">(Chica) 1/4 Mt. &nbsp;|&nbsp; (Grande) 1/2 Mt.</p>
-      </div>
+    function toggleCart() {
+      document.getElementById("cart-overlay").classList.toggle("open");
+    }
 
-      <div class="card">
-        <span class="item-name-highlight">Simple de Muzzarella</span>
-        <div class="item-desc">Muzzarella - salsa - orégano - oliva</div>
-        <div class="multi-prices two-cols">
-          <div class="price-box"><span class="label">Chica (1/4 Mt.)</span><span class="val">$8.000</span></div>
-          <div class="price-box"><span class="label">Grande (1/2 Mt.)</span><span class="val">$16.000</span></div>
-        </div>
-      </div>
+    function closeCartOnBg(e) {
+      if (e.target.id === "cart-overlay") {
+        toggleCart();
+      }
+    }
 
-      <div class="card">
-        <span class="item-name-highlight">Napolitana</span>
-        <div class="item-desc">Muzzarella - salsa - orégano - jamón - oliva</div>
-        <div class="multi-prices two-cols">
-          <div class="price-box"><span class="label">Chica (1/4 Mt.)</span><span class="val">$8.500</span></div>
-          <div class="price-box"><span class="label">Grande (1/2 Mt.)</span><span class="val">$17.000</span></div>
-        </div>
-      </div>
+    let toastTimeout;
+    function showToast(text) {
+      const toast = document.getElementById("toast");
+      toast.textContent = text;
+      toast.classList.add("show");
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => toast.classList.remove("show"), 1600);
+    }
 
-      <div class="card">
-        <span class="item-name-highlight">Napolitana Súper</span>
-        <div class="item-desc">Muzzarella - salsa - jamón - rodajas de tomate y ajo</div>
-        <div class="multi-prices two-cols">
-          <div class="price-box"><span class="label">Chica (1/4 Mt.)</span><span class="val">$9.000</span></div>
-          <div class="price-box"><span class="label">Grande (1/2 Mt.)</span><span class="val">$18.000</span></div>
-        </div>
-      </div>
-
-      <div class="card">
-        <span class="item-name-highlight">Especial</span>
-        <div class="item-desc">Muzzarella - salsa - jamón - oliva - morrones y aceitunas</div>
-        <div class="multi-prices two-cols">
-          <div class="price-box"><span class="label">Chica (1/4 Mt.)</span><span class="val">$9.000</span></div>
-          <div class="price-box"><span class="label">Grande (1/2 Mt.)</span><span class="val">$18.000</span></div>
-        </div>
-      </div>
-
-      <div class="card">
-        <span class="item-name-highlight">A la Crema (Humita)</span>
-        <div class="item-desc">Muzzarella - salsa - crema de choclo</div>
-        <div class="multi-prices two-cols">
-          <div class="price-box"><span class="label">Chica (1/4 Mt.)</span><span class="val">$8.500</span></div>
-          <div class="price-box"><span class="label">Grande (1/2 Mt.)</span><span class="val">$17.000</span></div>
-        </div>
-      </div>
-
-      <div class="card">
-        <span class="item-name-highlight">Fugazzeta</span>
-        <div class="item-desc">Muzzarella - salsa - cebolla - oliva - orégano</div>
-        <div class="multi-prices two-cols">
-          <div class="price-box"><span class="label">Chica (1/4 Mt.)</span><span class="val">$8.500</span></div>
-          <div class="price-box"><span class="label">Grande (1/2 Mt.)</span><span class="val">$17.000</span></div>
-        </div>
-      </div>
-
-      <div class="card">
-        <span class="item-name-highlight">A la Española (Picante)</span>
-        <div class="item-desc">Muzzarella - salsa muy picante - porotos - salchicha</div>
-        <div class="multi-prices two-cols">
-          <div class="price-box"><span class="label">Chica (1/4 Mt.)</span><span class="val">$9.000</span></div>
-          <div class="price-box"><span class="label">Grande (1/2 Mt.)</span><span class="val">$18.000</span></div>
-        </div>
-      </div>
-
-      <div class="card">
-        <span class="item-name-highlight">A la Provenzal</span>
-        <div class="item-desc">Salsa - ajo - perejil - oliva - orégano</div>
-        <div class="multi-prices two-cols">
-          <div class="price-box"><span class="label">Chica (1/4 Mt.)</span><span class="val">$8.500</span></div>
-          <div class="price-box"><span class="label">Grande (1/2 Mt.)</span><span class="val">$17.000</span></div>
-        </div>
-      </div>
-
-      <div class="card">
-        <span class="item-name-highlight">Al Roquefort (Fuerte)</span>
-        <div class="item-desc">Roquefort - salsa - oliva - orégano</div>
-        <div class="multi-prices two-cols">
-          <div class="price-box"><span class="label">Chica (1/4 Mt.)</span><span class="val">$10.000</span></div>
-          <div class="price-box"><span class="label">Grande (1/2 Mt.)</span><span class="val">$20.000</span></div>
-        </div>
-      </div>
-
-      <div class="card">
-        <span class="item-name-highlight">Calabresa</span>
-        <div class="item-desc">Muzzarella - salsa - picante longaniza - oliva - orégano</div>
-        <div class="multi-prices two-cols">
-          <div class="price-box"><span class="label">Chica (1/4 Mt.)</span><span class="val">$10.000</span></div>
-          <div class="price-box"><span class="label">Grande (1/2 Mt.)</span><span class="val">$20.000</span></div>
-        </div>
-      </div>
-
-      <div class="card">
-        <span class="item-name-highlight">Gran Marino</span>
-        <div class="item-desc">(Muy rica) Salsa, atún - cebolla</div>
-        <div class="multi-prices two-cols">
-          <div class="price-box"><span class="label">Chica (1/4 Mt.)</span><span class="val">$10.000</span></div>
-          <div class="price-box"><span class="label">Grande (1/2 Mt.)</span><span class="val">$20.000</span></div>
-        </div>
-      </div>
-
-      <div class="card">
-        <span class="item-name-highlight">Primavera</span>
-        <div class="item-desc">(Recopilación) Roquefort - calabresa king - crema especial</div>
-        <div class="multi-prices two-cols">
-          <div class="price-box"><span class="label">Chica (1/4 Mt.)</span><span class="val">$10.500</span></div>
-          <div class="price-box"><span class="label">Grande (1/2 Mt.)</span><span class="val">$21.000</span></div>
-        </div>
-      </div>
-
-      <div class="card">
-        <span class="item-name-highlight">Pizza Loca</span>
-        <div class="item-desc">Muzzarella - salsa - trocitos de longaniza - roquefort - ajíes</div>
-        <div class="multi-prices two-cols">
-          <div class="price-box"><span class="label">Chica (1/4 Mt.)</span><span class="val">$10.500</span></div>
-          <div class="price-box"><span class="label">Grande (1/2 Mt.)</span><span class="val">$21.000</span></div>
-        </div>
-      </div>
-
-      <div class="card">
-        <span class="item-name-highlight">Gran King</span>
-        <div class="item-desc">Muzzarella, salsa, jamón - aceitunas - morrones - huevo duro - tomate en rodajas - oliva - orégano</div>
-        <div class="multi-prices two-cols">
-          <div class="price-box"><span class="label">Chica (1/4 Mt.)</span><span class="val">$10.500</span></div>
-          <div class="price-box"><span class="label">Grande (1/2 Mt.)</span><span class="val">$21.000</span></div>
-        </div>
-      </div>
-
-      <div class="card">
-        <span class="item-name-highlight">De Palmitos</span>
-        <div class="item-desc">Muzzarella - salsa - palmitos - oliva - orégano</div>
-        <div class="multi-prices two-cols">
-          <div class="price-box"><span class="label">Chica (1/4 Mt.)</span><span class="val">$10.500</span></div>
-          <div class="price-box"><span class="label">Grande (1/2 Mt.)</span><span class="val">$21.000</span></div>
-        </div>
-      </div>
-
-      <div class="card">
-        <span class="item-name-highlight">Alemana</span>
-        <div class="item-desc">Muzzarella - salsa - oliva - panceta - salchichas</div>
-        <div class="multi-prices two-cols">
-          <div class="price-box"><span class="label">Chica (1/4 Mt.)</span><span class="val">$10.500</span></div>
-          <div class="price-box"><span class="label">Grande (1/2 Mt.)</span><span class="val">$21.000</span></div>
-        </div>
-      </div>
-
-      <div class="card">
-        <span class="item-name-highlight">Kabaret</span>
-        <div class="item-desc">Muzzarella - salsa - oliva - panceta - cebolla - huevo</div>
-        <div class="multi-prices two-cols">
-          <div class="price-box"><span class="label">Chica (1/4 Mt.)</span><span class="val">$10.500</span></div>
-          <div class="price-box"><span class="label">Grande (1/2 Mt.)</span><span class="val">$21.000</span></div>
-        </div>
-      </div>
-
-      <div class="card">
-        <span class="item-name-highlight">Italiana</span>
-        <div class="item-desc">Muzzarella - salsa - oliva - tomate - morrones - calabresa</div>
-        <div class="multi-prices two-cols">
-          <div class="price-box"><span class="label">Chica (1/4 Mt.)</span><span class="val">$10.500</span></div>
-          <div class="price-box"><span class="label">Grande (1/2 Mt.)</span><span class="val">$21.000</span></div>
-        </div>
-      </div>
-
-      <div class="card">
-        <span class="item-name-highlight">Rúcula</span>
-        <div class="multi-prices two-cols">
-          <div class="price-box"><span class="label">Chica (1/4 Mt.)</span><span class="val">$10.000</span></div>
-          <div class="price-box"><span class="label">Grande (1/2 Mt.)</span><span class="val">$20.000</span></div>
-        </div>
-      </div>
-
-      <div class="card">
-        <span class="item-name-highlight">Champiñones</span>
-        <div class="multi-prices two-cols">
-          <div class="price-box"><span class="label">Chica (1/4 Mt.)</span><span class="val">$10.500</span></div>
-          <div class="price-box"><span class="label">Grande (1/2 Mt.)</span><span class="val">$21.000</span></div>
-        </div>
-      </div>
-
-      <div class="card featured">
-        <span class="item-name-highlight">Si desea agregado de Anchoas</span>
-        <div class="multi-prices two-cols">
-          <div class="price-box"><span class="label">Chica (1/4 Mt.)</span><span class="val">$6.000</span></div>
-          <div class="price-box"><span class="label">Grande (1/2 Mt.)</span><span class="val">$12.000</span></div>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <footer>
-    <span>PAMPER'S KING</span> • Sándwiches, Lomos, Milanesas y Pizzas
-  </footer>
-
+    // Inicializar
+    renderMenu();
+    updateCartUI();
+  </script>
 </body>
 </html>
