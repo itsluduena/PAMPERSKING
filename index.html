@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menú Digital - Pamper's King</title>
+  <style>
+    :root {
+      --primary: #d9232e;      /* Rojo vibrante estilo comida rápida */
+      --secondary: #f5b800;    /* Amarillo dorado */
+      --dark: #18181b;         /* Fondo oscuro elegante */
+      --card-bg: #242429;      /* Fondo de tarjetas */
+      --text-main: #f4f4f5;    /* Texto principal */
+      --text-muted: #a1a1aa;   /* Texto secundario */
+      --border: #3f3f46;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--dark);
+      color: var(--text-main);
+      line-height: 1.5;
+      padding-bottom: 40px;
+    }
+
+    /* Encabezado fijo con Logo a la izquierda */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(24, 24, 27, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 2px solid var(--primary);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .logo-container {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      overflow: hidden;
+      background-color: var(--secondary);
+      border: 2px solid var(--secondary);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .brand-info h1 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+
+    .brand-info span {
+      font-size: 0.8rem;
+      color: var(--secondary);
+      font-weight: 600;
+      display: block;
+    }
+
+    /* Barra de navegación rápida horizontal para móviles */
+    nav.category-nav {
+      display: flex;
+      overflow-x: auto;
+      gap: 8px;
+      padding: 12px 16px;
+      background-color: #1f1f23;
+      border-bottom: 1px solid var(--border);
+      scrollbar-width: none; /* Firefox */
+    }
+
+    nav.category-nav::-webkit-scrollbar {
+      display: none; /* Chrome/Safari */
+    }
+
+    nav.category-nav a {
+      text-decoration: none;
+      color: var(--text-main);
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    nav.category-nav a:hover,
+    nav.category-nav a:active {
+      background-color: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+    }
+
+    /* Contenedor principal */
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    section {
+      margin-bottom: 32px;
+      scroll-margin-top: 85px;
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--secondary);
+      text-transform: uppercase;
+      border-left: 4px solid var(--primary);
+      padding-left: 10px;
+      margin-bottom: 6px;
+    }
+
+    .section-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      padding-left: 14px;
+    }
+
+    /* Tarjetas de productos */
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 4px;
+    }
+
+    .item-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .item-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .price-tag {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--secondary);
+      white-space: nowrap;
+    }
+
+    /* Grilla de precios múltiples (Ej: Hamb / Lomo / Milanesa) */
+    .multi-prices {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px dashed var(--border);
+      text-align: center;
+    }
+
+    .multi-prices.two-cols {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .price-box {
+      background: rgba(0, 0, 0, 0.25);
+      padding: 6px 4px;
+      border-radius: 8px;
+    }
+
+    .price-box .label {
+      display: block;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .price-box .val {
+      display: block;
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--secondary);
+    }
+
+    /* Tarjeta destacada (Especialidades) */
+    .card.featured {
+      border: 1.5px solid var(--secondary);
+      background: linear-gradient(145deg, #292524, #1c1917);
+    }
+
+    .badge {
+      display: inline-block;
+      background-color: var(--primary);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      margin-top: 20px;
+      padding: 0 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ENCABEZADO CON LOGO EN LA ESQUINA SUPERIOR IZQUIERDA -->
+  <header>
+    <div class="logo-container">
+      <!-- REEMPLAZA EL VALOR DE src CON EL URL DE TU LOGO -->
+      <img 
+        src="https://via.placeholder.com/150/f5b800/18181b?text=PK" 
+        alt="Logo Pamper's King"
+        onerror="this.src='https://via.placeholder.com/150/f5b800/18181b?text=PK'">
+    </div>
+    <div class="brand-info">
+      <h1>Pamper's King</h1>
+      <span>Menú Digital</span>
+    </div>
+  </header>
+
+  <!-- NAVEGACIÓN RÁPIDA -->
+  <nav class="category-nav">
+    <a href="#sandwiches">Sándwiches</a>
+    <a href="#especiales">Especiales & Al Plato</a>
+    <a href="#miga">De Miga & Tostados</a>
+    <a href="#papas">Papas</a>
+    <a href="#pizzas">Pizzas</a>
+  </nav>
+
+  <main>
+
+    <!-- SECCIÓN 1: SÁNDWICHES -->
+    <section id="sandwiches">
+      <h2 class="section-title">Sándwiches</h2>
+      <p class="section-subtitle">Solo cambia el bife (Hamburguesa, Lomo o Milanesa)</p>
+
+      <div class="card">
+        <div class="item-name">Común</div>
+        <div class="item-desc">Lechuga, tomate, queso y mayonesa.</div>
+        <div class="multi-prices">
+          <div class="price-box"><span class="label">Hamb.</span><span class="val">$9.000</span></div>
+          <div class="price-box"><span class="label">Lomo</span><span class="val">$11.000</span></div>
+          <div class="price-box"><span class="label">Milanesa</span><span class="val">$12.000</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="item-name">Napole</div>
+        <div class="item-desc">Lechuga, tomate, queso, mayonesa y jamón cocido.</div>
+        <div class="multi-prices">
+          <div class="price-box"><span class="label">Hamb.</span><span class="val">$10.000</span></div>
+          <div class="price-box"><span class="label">Lomo</span><span class="val">$11.500</span></div>
+          <div class="price-box"><span class="label">Milanesa</span><span class="val">$12.500</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="item-name">Especial</div>
+        <div class="item-desc">Lechuga, mayonesa, tomate, queso y huevo.</div>
+        <div class="multi-prices">
+          <div class="price-box"><span class="label">Hamb.</span><span class="val">$11.000</span></div>
+          <div class="price-box"><span class="label">Lomo</span><span class="val">$12.000</span></div>
+          <div class="price-box"><span class="label">Milanesa</span><span class="val">$13.000</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="item-name">Americanos</div>
+        <div class="item-desc">Lechuga, tomate, queso, mayonesa, huevos, aceitunas, ajíes y morrones.</div>
+        <div class="multi-prices">
+          <div class="price-box"><span class="label">Hamb.</span><span class="val">$12.000</span></div>
+          <div class="price-box"><span class="label">Lomo</span><span class="val">$13.000</span></div>
+          <div class="price-box"><span class="label">Milanesa</span><span class="val">$14.000</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="item-name">Lomo Criollo</div>
+        <div class="item-desc">Dos bifes con pan común. ¡Riquísimo!</div>
+        <div class="multi-prices">
+          <div class="price-box"><span class="label">Común</span><span class="val">$16.000</span></div>
+          <div class="price-box"><span class="label">Napole</span><span class="val">$17.000</span></div>
+          <div class="price-box"><span class="label">Especial</span><span class="val">$19.000</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="item-name">Criollos de Mila</div>
+        <div class="item-desc">Sándwich criollo con milanesa.</div>
+        <div class="multi-prices">
+          <div class="price-box"><span class="label">Común</span><span class="val">$18.000</span></div>
+          <div class="price-box"><span class="label">Napo</span><span class="val">$19.000</span></div>
+          <div class="price-box"><span class="label">Especial</span><span class="val">$21.000</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: ESPECIALES & AL PLATO -->
+    <section id="especiales">
+      <h2 class="section-title">Especialidades de la Casa</h2>
+      <p class="section-subtitle">Platos abundantes y creaciones exclusivas</p>
+
+      <div class="card featured">
+        <span class="badge">Exclusivo</span>
+        <div class="item-name">Master Sándwiches al Plato</div>
+        <div class="item-desc">Lechuga, tomate, queso, mayonesa, huevos, jamón, aceitunas, morrones, zanahorias, remolacha, porotos, arveja y papas fritas.</div>
+        <div class="multi-prices">
+          <div class="price-box"><span class="label">Hamburguesa</span><span class="val">$14.000</span></div>
+          <div class="price-box"><span class="label">Lomo</span><span class="val">$16.000</span></div>
+          <div class="price-box"><span class="label">Milanesa</span><span class="val">$19.000</span></div>
+        </div>
+      </div>
+
+      <div class="card featured">
+        <span class="badge">¡Para compartir!</span>
+        <div class="item-name">Milanesa Pamper Gigante</div>
+        <div class="item-desc">Dos milanesas grandes, 2 huevos, queso, jamón, tres rodajas de tomate, lechuga, mostaza, pan y porción de papas fritas. <em>"Vos solo no lo terminás... ¡es para dos!"</em></div>
+        <div class="multi-prices two-cols">
+          <div class="price-box"><span class="label">Entera</span><span class="val">$25.000</span></div>
+          <div class="price-box"><span class="label">Media (1/2)</span><span class="val">$15.000</span></div>
+        </div>
+      </div>
+
+      <div class="card featured">
+        <span class="badge">Nuestra Creación - Único</span>
+        <div class="item-header">
+          <div class="item-name">Barroluco</div>
+          <div class="price-tag">$18.000</div>
+        </div>
+        <div class="item-desc">Igual al sándwich triple, más 2 bifes de lomo.</div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 3: SÁNDWICHES DE MIGA Y TOSTADOS -->
+    <section id="miga">
+      <h2 class="section-title">Sándwiches de Miga y Tostados</h2>
+      <p class="section-subtitle">Clásicos frescos y a la plancha</p>
+
+      <div class="card">
+        <div class="item-header">
+          <div class="item-name">Sándwich de Atún</div>
+          <div class="price-tag">$11.000</div>
+        </div>
+        <div class="item-desc">Queso, tomates en rodajas y mayonesa.</div>
+      </div>
+
+      <div class="card">
+        <div class="item-header">
+          <div class="item-name">Sándwich de Miga</div>
+          <div class="price-tag">$10.000</div>
+        </div>
+        <div class="item-desc">Queso, jamón cocido y mayonesa.</div>
+      </div>
+
+      <div class="card">
+        <div class="item-header">
+          <div class="item-name">Triple Común</div>
+          <div class="price-tag">$11.000</div>
+        </div>
+        <div class="item-desc">Queso, jamón, mayonesa, tomate y lechuga.</div>
+      </div>
+
+      <div class="card">
+        <div class="item-header">
+          <div class="item-name">Triple Americano</div>
+          <div class="price-tag">$12.000</div>
+        </div>
+        <div class="item-desc">Queso, jamón, mayonesa, tomate, lechuga, ajíes, morrones y aceitunas.</div>
+      </div>
+
+      <div class="card">
+        <div class="item-header">
+          <div class="item-name">Frío Vegetariano</div>
+          <div class="price-tag">$10.000</div>
+        </div>
+        <div class="item-desc">Mayonesa, queso y morrones.</div>
+      </div>
+
+      <div class="card">
+        <div class="item-header">
+          <div class="item-name">Tostado Carlito (a la plancha)</div>
+          <div class="price-tag">$11.000</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="item-header">
+          <div class="item-name">Tostado Triple (Común)</div>
+          <div class="price-tag">$12.000</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="item-header">
+          <div class="item-name">Tostado Triple (Americano)</div>
+          <div class="price-tag">$13.000</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 4: PAPAS -->
+    <section id="papas">
+      <h2 class="section-title">Papas</h2>
+      <div class="card">
+        <div class="item-header">
+          <div class="item-name">Papas Rejillas</div>
+          <div class="price-tag">$5.000</div>
+        </div>
+        <div class="item-desc">Consultar disponibilidad con queso cheddar.</div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 5: PIZZAS -->
+    <section id="pizzas">
+      <h2 class="section-title">Pizzas</h2>
+      <p class="section-subtitle">Chica (1/4 Mt.) | Grande (1/2 Mt.)</p>
+
+      <div class="card">
+        <div class="item-name">Simple de Muzzarella</div>
+        <div class="item-desc">Muzzarella, salsa, orégano y oliva.</div>
+        <div class="multi-prices two-cols">
+          <div class="price-box"><span class="label">Chica (1/4 Mt.)</span><span class="val">$8.000</span></div>
+          <div class="price-box"><span class="label">Grande (1/2 Mt.)</span><span class="val">$16.000</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="item-name">Napolitana</div>
+        <div class="item-desc">Muzzarella, salsa, orégano, jamón y oliva.</div>
+        <div class="multi-prices two-cols">
+          <div class="price-box"><span class="label">Chica</span><span class="val">$8.500</span></div>
+          <div class="price-box"><span class="label">Grande</span><span class="val">$17.000</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="item-name">Napolitana Súper</div>
+        <div class="item-desc">Muzzarella, salsa, jamón, rodajas de tomate y ajo.</div>
+        <div class="multi-prices two-cols">
+          <div class="price-box"><span class="label">Chica</span><span class="val">$9.000</span></div>
+          <div class="price-box"><span class="label">Grande</span><span class="val">$18.000</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="item-name">Especial</div>
+        <div class="item-desc">Muzzarella, salsa, jamón, oliva, morrones y aceitunas.</div>
+        <div class="multi-prices two-cols">
+          <div class="price-box"><span class="label">Chica</span><span class="val">$9.000</span></div>
+          <div class="price-box"><span class="label">Grande</span><span class="val">$18.000</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="item-name">A la Crema (Humita)</div>
+        <div class="item-desc">Muzzarella, salsa y crema de choclo.</div>
+        <div class="multi-prices two-cols">
+          <div class="price-box"><span class="label">Chica</span><span class="val">$8.500</span></div>
+          <div class="price-box"><span class="label">Grande</span><span class="val">$17.000</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="item-name">Fugazzeta</div>
+        <div class="item-desc">Muzzarella, salsa, cebolla, oliva y orégano.</div>
+        <div class="multi-prices two-cols">
+          <div class="price-box"><span class="label">Chica</span><span class="val">$8.500</span></div>
+          <div class="price-box"><span class="label">Grande</span><span class="val">$17.000</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="item-name">A la Española (Picante)</div>
+        <div class="item-desc">Muzzarella, salsa muy picante, porotos y salchicha.</div>
+        <div class="multi-prices two-cols">
+          <div class="price-box"><span class="label">Chica</span><span class="val">$9.000</span></div>
+          <div class="price-box"><span class="label">Grande</span><span class="val">$18.000</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="item-name">A la Provenzal</div>
+        <div class="item-desc">Salsa, ajo, perejil, oliva y orégano.</div>
+        <div class="multi-prices two-cols">
+          <div class="price-box"><span class="label">Chica</span><span class="val">$8.500</span></div>
+          <div class="price-box"><span class="label">Grande</span><span class="val">$17.000</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="item-name">Al Roquefort (Fuerte)</div>
+        <div class="item-desc">Roquefort, salsa, oliva y orégano.</div>
+        <div class="multi-prices two-cols">
+          <div class="price-box"><span class="label">Chica</span><span class="val">$10.000</span></div>
+          <div class="price-box"><span class="label">Grande</span><span class="val">$20.000</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="item-name">Calabresa</div>
+        <div class="item-desc">Muzzarella, salsa, picante longaniza, oliva y orégano.</div>
+        <div class="multi-prices two-cols">
+          <div class="price-box"><span class="label">Chica</span><span class="val">$10.000</span></div>
+          <div class="price-box"><span class="label">Grande</span><span class="val">$20.000</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="item-name">Gran Marino</div>
+        <div class="item-desc">(Muy rica) Salsa, atún y cebolla.</div>
+        <div class="multi-prices two-cols">
+          <div class="price-box"><span class="label">Chica</span><span class="val">$10.000</span></div>
+          <div class="price-box"><span class="label">Grande</span><span class="val">$20.000</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="item-name">Primavera</div>
+        <div class="item-desc">(Recopilación) Roquefort, calabresa king y crema especial.</div>
+        <div class="multi-prices two-cols">
+          <div class="price-box"><span class="label">Chica</span><span class="val">$10.500</span></div>
+          <div class="price-box"><span class="label">Grande</span><span class="val">$21.000</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="item-name">Pizza Loca</div>
+        <div class="item-desc">Muzzarella, salsa, trocitos de longaniza, roquefort y ajíes.</div>
+        <div class="multi-prices two-cols">
+          <div class="price-box"><span class="label">Chica</span><span class="val">$10.500</span></div>
+          <div class="price-box"><span class="label">Grande</span><span class="val">$21.000</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="item-name">Gran King</div>
+        <div class="item-desc">Muzzarella, salsa, jamón, aceitunas, morrones, huevo duro, tomate en rodajas, oliva y orégano.</div>
+        <div class="multi-prices two-cols">
+          <div class="price-box"><span class="label">Chica</span><span class="val">$10.500</span></div>
+          <div class="price-box"><span class="label">Grande</span><span class="val">$21.000</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="item-name">De Palmitos</div>
+        <div class="item-desc">Muzzarella, salsa, palmitos, oliva y orégano.</div>
+        <div class="multi-prices two-cols">
+          <div class="price-box"><span class="label">Chica</span><span class="val">$10.500</span></div>
+          <div class="price-box"><span class="label">Grande</span><span class="val">$21.000</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="item-name">Alemana</div>
+        <div class="item-desc">Muzzarella, salsa, oliva, panceta y salchichas.</div>
+        <div class="multi-prices two-cols">
+          <div class="price-box"><span class="label">Chica</span><span class="val">$10.500</span></div>
+          <div class="price-box"><span class="label">Grande</span><span class="val">$21.000</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="item-name">Kabaret</div>
+        <div class="item-desc">Muzzarella, salsa, oliva, panceta, cebolla y huevo.</div>
+        <div class="multi-prices two-cols">
+          <div class="price-box"><span class="label">Chica</span><span class="val">$10.500</span></div>
+          <div class="price-box"><span class="label">Grande</span><span class="val">$21.000</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="item-name">Italiana</div>
+        <div class="item-desc">Muzzarella, salsa, oliva, tomate, morrones y calabresa.</div>
+        <div class="multi-prices two-cols">
+          <div class="price-box"><span class="label">Chica</span><span class="val">$10.500</span></div>
+          <div class="price-box"><span class="label">Grande</span><span class="val">$21.000</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="item-name">Rúcula</div>
+        <div class="multi-prices two-cols">
+          <div class="price-box"><span class="label">Chica</span><span class="val">$10.000</span></div>
+          <div class="price-box"><span class="label">Grande</span><span class="val">$20.000</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="item-name">Champiñones</div>
+        <div class="multi-prices two-cols">
+          <div class="price-box"><span class="label">Chica</span><span class="val">$10.500</span></div>
+          <div class="price-box"><span class="label">Grande</span><span class="val">$21.000</span></div>
+        </div>
+      </div>
+
+      <div class="card featured">
+        <div class="item-name">Agregado de Anchoas</div>
+        <div class="item-desc">Adicional para tu pizza.</div>
+        <div class="multi-prices two-cols">
+          <div class="price-box"><span class="label">Chica</span><span class="val">$6.000</span></div>
+          <div class="price-box"><span class="label">Grande</span><span class="val">$12.000</span></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p><strong>Pamper's King</strong> — Todos los precios están expresados en pesos.</p>
+  </footer>
+
+</body>
+</html>
