@@ -424,7 +424,7 @@
     .cart-drawer {
       background-color: var(--bg-paper);
       width: 100%;
-      max-width: 430px;
+      max-width: 440px;
       height: 100%;
       border-left: 4px solid var(--ink-dark);
       display: flex;
@@ -480,24 +480,140 @@
       background: #fff;
       border: 2px solid var(--ink-dark);
       border-radius: 12px;
-      padding: 10px 12px;
-      margin-bottom: 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
+      padding: 12px;
+      margin-bottom: 12px;
       box-shadow: 2px 2px 0 var(--ink-dark);
     }
 
+    .cart-item-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
     .cart-item-info h4 {
-      font-size: 0.9rem;
+      font-size: 0.94rem;
       font-weight: 800;
     }
 
     .cart-item-info span {
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       color: var(--red-brand);
+      font-weight: 800;
+    }
+
+    .cart-item-extras-applied {
+      margin-top: 6px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .extra-tag {
+      background-color: var(--yellow-soft);
+      border: 1px solid var(--ink-dark);
+      border-radius: 6px;
+      padding: 2px 7px;
+      font-size: 0.74rem;
+      font-weight: 800;
+      color: var(--ink-dark);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .extra-tag button {
+      background: none;
+      border: none;
+      font-weight: 800;
+      color: var(--red-brand);
+      cursor: pointer;
+      font-size: 0.8rem;
+      line-height: 1;
+    }
+
+    .cart-item-actions-row {
+      margin-top: 8px;
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .btn-extras-toggle {
+      background-color: var(--yellow-mark);
+      color: var(--ink-dark);
+      border: 1.5px solid var(--ink-dark);
+      border-radius: 7px;
+      padding: 3px 9px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .btn-extras-toggle:hover {
+      background-color: var(--red-brand);
+      color: #fff;
+    }
+
+    .pizza-extras-panel {
+      margin-top: 8px;
+      padding: 8px;
+      background-color: var(--bg-paper);
+      border: 1.5px dashed var(--ink-dark);
+      border-radius: 9px;
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .pizza-extras-panel.open {
+      display: flex;
+    }
+
+    .pizza-extra-option {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
       font-weight: 700;
+      background: #fff;
+      padding: 5px 8px;
+      border-radius: 6px;
+      border: 1px solid #d6ccb8;
+    }
+
+    .pizza-extra-add {
+      background-color: var(--red-brand);
+      color: #fff;
+      border: 1.5px solid var(--ink-dark);
+      border-radius: 6px;
+      padding: 2px 8px;
+      font-size: 0.74rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .pref-input-wrap {
+      margin-top: 8px;
+    }
+
+    .pref-input {
+      width: 100%;
+      padding: 6px 9px;
+      border: 1.5px solid #b8aea0;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.78rem;
+      font-weight: 600;
+      background-color: #faf7f0;
+      color: var(--ink-dark);
+    }
+
+    .pref-input:focus {
+      outline: none;
+      border-color: var(--ink-dark);
+      background-color: #fff;
     }
 
     .qty-controls {
@@ -522,82 +638,10 @@
       text-align: center;
     }
 
-    /* Bloque de extras para pizzas dentro del carrito */
-    .pizza-extras-box {
-      background-color: var(--yellow-soft);
-      border: 2px solid var(--ink-dark);
-      border-radius: 12px;
-      padding: 12px;
-      margin-top: 14px;
-      box-shadow: 2px 2px 0 var(--ink-dark);
-    }
-
-    .pizza-extras-box h3 {
-      font-size: 1.05rem;
-      color: var(--red-brand);
-      margin-bottom: 8px;
-      text-transform: uppercase;
-    }
-
-    .extra-group {
-      margin-bottom: 10px;
-    }
-
-    .extra-group:last-child {
-      margin-bottom: 0;
-    }
-
-    .extra-group-title {
-      font-size: 0.84rem;
-      font-weight: 800;
-      color: var(--ink-dark);
-      margin-bottom: 5px;
-      display: block;
-    }
-
-    .extra-buttons-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6px;
-    }
-
-    .extra-add-btn {
-      background-color: #fff;
-      color: var(--ink-dark);
-      border: 2px solid var(--ink-dark);
-      border-radius: 8px;
-      padding: 6px 8px;
-      font-family: inherit;
-      font-size: 0.78rem;
-      font-weight: 800;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: 2px;
-      box-shadow: 2px 2px 0 var(--ink-dark);
-      transition: all 0.1s;
-    }
-
-    .extra-add-btn:hover {
-      background-color: var(--red-brand);
-      color: #fff;
-    }
-
-    .extra-add-btn .extra-price {
-      color: var(--red-brand);
-      font-size: 0.82rem;
-    }
-
-    .extra-add-btn:hover .extra-price {
-      color: var(--yellow-mark);
-    }
-
     .cart-footer {
       background: #fff;
       border-top: 3px solid var(--ink-dark);
-      padding: 14px 16px;
+      padding: 16px;
     }
 
     .customer-fields {
@@ -607,37 +651,22 @@
       margin-bottom: 12px;
     }
 
-    .customer-fields label {
-      font-size: 0.78rem;
-      font-weight: 800;
-      color: var(--ink-dark);
-      margin-bottom: -4px;
-    }
-
-    .customer-fields input,
-    .customer-fields select,
-    .customer-fields textarea {
+    .customer-fields input, .customer-fields select {
       width: 100%;
-      padding: 8px 11px;
+      padding: 9px 12px;
       border: 2px solid var(--ink-dark);
       border-radius: 8px;
       font-family: inherit;
-      font-size: 0.86rem;
+      font-size: 0.88rem;
       font-weight: 600;
       background-color: var(--bg-paper);
-      color: var(--ink-dark);
-    }
-
-    .customer-fields textarea {
-      resize: vertical;
-      min-height: 58px;
     }
 
     .cart-total-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 1.15rem;
+      font-size: 1.2rem;
       font-weight: 800;
       margin-bottom: 12px;
     }
@@ -763,20 +792,12 @@
 
       <div class="cart-footer" id="cart-footer" style="display: none;">
         <div class="customer-fields">
-          <label for="cust-name">Nombre</label>
           <input type="text" id="cust-name" placeholder="Tu nombre (Ej: Juan)">
-
-          <label for="cust-delivery">Modalidad</label>
           <select id="cust-delivery">
             <option value="Retiro en el local">Retiro en el local</option>
             <option value="Envío a domicilio">Envío a domicilio</option>
           </select>
-
-          <label for="cust-preferences">Preferencias (sin tomate, sin cebolla, sin aderezos, etc.)</label>
-          <textarea id="cust-preferences" placeholder="Ej: Sin tomate ni cebolla, sin mayonesa, bien cocido..."></textarea>
-
-          <label for="cust-address">Dirección / Notas adicionales</label>
-          <input type="text" id="cust-address" placeholder="Calle, altura o aclaración de entrega">
+          <input type="text" id="cust-address" placeholder="Dirección / Notas generales (opcional)">
         </div>
 
         <div class="cart-total-row">
@@ -793,6 +814,14 @@
 
   <script>
     const WHATSAPP_PHONE = "5493644135401";
+
+    // Extras disponibles individualmente para cada pizza en el carrito
+    const PIZZA_EXTRAS = [
+      { label: "Agregado de Anchoas (Media pizza)", price: 6000 },
+      { label: "Agregado de Anchoas (Pizza entera)", price: 12000 },
+      { label: "Agregado de Champiñones (Media pizza)", price: 10500 },
+      { label: "Agregado de Champiñones (Pizza entera)", price: 21000 }
+    ];
 
     const menuData = [
       {
@@ -958,6 +987,7 @@
           {
             name: "Simple de Muzzarella",
             desc: "Muzzarella, salsa, orégano y oliva.",
+            isPizza: true,
             variants: [
               { label: "Chica (1/4 Mt.)", price: 8000 },
               { label: "Grande (1/2 Mt.)", price: 16000 }
@@ -966,6 +996,7 @@
           {
             name: "Napolitana",
             desc: "Muzzarella, salsa, orégano, jamón y oliva.",
+            isPizza: true,
             variants: [
               { label: "Chica (1/4 Mt.)", price: 8500 },
               { label: "Grande (1/2 Mt.)", price: 17000 }
@@ -974,6 +1005,7 @@
           {
             name: "Napolitana Súper",
             desc: "Muzzarella, salsa, jamón, rodajas de tomate y ajo.",
+            isPizza: true,
             variants: [
               { label: "Chica (1/4 Mt.)", price: 9000 },
               { label: "Grande (1/2 Mt.)", price: 18000 }
@@ -982,6 +1014,7 @@
           {
             name: "Especial",
             desc: "Muzzarella, salsa, jamón, oliva, morrones y aceitunas.",
+            isPizza: true,
             variants: [
               { label: "Chica (1/4 Mt.)", price: 9000 },
               { label: "Grande (1/2 Mt.)", price: 18000 }
@@ -990,6 +1023,7 @@
           {
             name: "A la Crema (Humita)",
             desc: "Muzzarella, salsa y crema de choclo.",
+            isPizza: true,
             variants: [
               { label: "Chica (1/4 Mt.)", price: 8500 },
               { label: "Grande (1/2 Mt.)", price: 17000 }
@@ -998,6 +1032,7 @@
           {
             name: "Fugazzeta",
             desc: "Muzzarella, salsa, cebolla, oliva y orégano.",
+            isPizza: true,
             variants: [
               { label: "Chica (1/4 Mt.)", price: 8500 },
               { label: "Grande (1/2 Mt.)", price: 17000 }
@@ -1006,6 +1041,7 @@
           {
             name: "A la Española (Picante)",
             desc: "Muzzarella, salsa muy picante, porotos y salchicha.",
+            isPizza: true,
             variants: [
               { label: "Chica (1/4 Mt.)", price: 9000 },
               { label: "Grande (1/2 Mt.)", price: 18000 }
@@ -1014,6 +1050,7 @@
           {
             name: "A la Provenzal",
             desc: "Salsa, ajo, perejil, oliva y orégano.",
+            isPizza: true,
             variants: [
               { label: "Chica (1/4 Mt.)", price: 8500 },
               { label: "Grande (1/2 Mt.)", price: 17000 }
@@ -1022,6 +1059,7 @@
           {
             name: "Al Roquefort (Fuerte)",
             desc: "Roquefort, salsa, oliva y orégano.",
+            isPizza: true,
             variants: [
               { label: "Chica (1/4 Mt.)", price: 10000 },
               { label: "Grande (1/2 Mt.)", price: 20000 }
@@ -1030,6 +1068,7 @@
           {
             name: "Calabresa",
             desc: "Muzzarella, salsa, picante longaniza, oliva y orégano.",
+            isPizza: true,
             variants: [
               { label: "Chica (1/4 Mt.)", price: 10000 },
               { label: "Grande (1/2 Mt.)", price: 20000 }
@@ -1038,6 +1077,7 @@
           {
             name: "Gran Marino",
             desc: "(Muy Rica) Salsa, atún y cebolla.",
+            isPizza: true,
             variants: [
               { label: "Chica (1/4 Mt.)", price: 10000 },
               { label: "Grande (1/2 Mt.)", price: 20000 }
@@ -1046,6 +1086,7 @@
           {
             name: "Primavera",
             desc: "(Recopilación) Roquefort, calabresa king y crema especial.",
+            isPizza: true,
             variants: [
               { label: "Chica (1/4 Mt.)", price: 10500 },
               { label: "Grande (1/2 Mt.)", price: 21000 }
@@ -1054,6 +1095,7 @@
           {
             name: "Pizza Loca",
             desc: "Muzzarella, salsa, trocitos de longaniza, roquefort y ajíes.",
+            isPizza: true,
             variants: [
               { label: "Chica (1/4 Mt.)", price: 10500 },
               { label: "Grande (1/2 Mt.)", price: 21000 }
@@ -1062,6 +1104,7 @@
           {
             name: "Gran King",
             desc: "Muzzarella, salsa, jamón, aceitunas, morrones, huevo duro, tomate en rodajas, oliva y orégano.",
+            isPizza: true,
             variants: [
               { label: "Chica (1/4 Mt.)", price: 10500 },
               { label: "Grande (1/2 Mt.)", price: 21000 }
@@ -1070,6 +1113,7 @@
           {
             name: "De Palmitos",
             desc: "Muzzarella, salsa, palmitos, oliva y orégano.",
+            isPizza: true,
             variants: [
               { label: "Chica (1/4 Mt.)", price: 10500 },
               { label: "Grande (1/2 Mt.)", price: 21000 }
@@ -1078,6 +1122,7 @@
           {
             name: "Alemana",
             desc: "Muzzarella, salsa, oliva, panceta y salchichas.",
+            isPizza: true,
             variants: [
               { label: "Chica (1/4 Mt.)", price: 10500 },
               { label: "Grande (1/2 Mt.)", price: 21000 }
@@ -1086,6 +1131,7 @@
           {
             name: "Kabaret",
             desc: "Muzzarella, salsa, oliva, panceta, cebolla y huevo.",
+            isPizza: true,
             variants: [
               { label: "Chica (1/4 Mt.)", price: 10500 },
               { label: "Grande (1/2 Mt.)", price: 21000 }
@@ -1094,6 +1140,7 @@
           {
             name: "Italiana",
             desc: "Muzzarella, salsa, oliva, tomate, morrones y calabresa.",
+            isPizza: true,
             variants: [
               { label: "Chica (1/4 Mt.)", price: 10500 },
               { label: "Grande (1/2 Mt.)", price: 21000 }
@@ -1102,6 +1149,7 @@
           {
             name: "Rúcula",
             desc: "Pizza con rúcula fresca.",
+            isPizza: true,
             variants: [
               { label: "Chica (1/4 Mt.)", price: 10000 },
               { label: "Grande (1/2 Mt.)", price: 20000 }
@@ -1110,6 +1158,7 @@
           {
             name: "Champiñones",
             desc: "Pizza con champiñones.",
+            isPizza: true,
             variants: [
               { label: "Chica (1/4 Mt.)", price: 10500 },
               { label: "Grande (1/2 Mt.)", price: 21000 }
@@ -1120,18 +1169,24 @@
             desc: "Adicional extra para tu pizza.",
             special: true,
             variants: [
-              { label: "Media Pizza", price: 6000 },
-              { label: "Pizza Entera", price: 12000 }
+              { label: "Chica", price: 6000 },
+              { label: "Grande", price: 12000 }
             ]
           }
         ]
       }
     ];
 
+    // Cada ítem del carrito guarda: name, basePrice, qty, isPizza, preference, extras ([]), extrasOpen (bool)
     let cart = [];
 
     function formatMoney(num) {
       return "$" + num.toLocaleString("es-AR");
+    }
+
+    function getItemUnitPrice(item) {
+      const extrasSum = (item.extras || []).reduce((s, ex) => s + ex.price, 0);
+      return item.basePrice + extrasSum;
     }
 
     function renderMenu() {
@@ -1161,7 +1216,7 @@
                         <span class="variant-label">${v.label}</span>
                         <div class="variant-action">
                           <span class="variant-price">${formatMoney(v.price)}</span>
-                          <button class="add-btn" onclick="addToCart('${safeTitle}', ${v.price})">+ Pedir</button>
+                          <button class="add-btn" onclick="addToCart('${safeTitle}', ${v.price}, ${!!item.isPizza})">+ Pedir</button>
                         </div>
                       </div>
                     `;
@@ -1174,12 +1229,20 @@
       `).join('');
     }
 
-    function addToCart(name, price) {
-      const existing = cart.find(i => i.name === name);
+    function addToCart(name, basePrice, isPizza) {
+      const existing = cart.find(i => i.name === name && (!i.extras || i.extras.length === 0));
       if (existing) {
         existing.qty += 1;
       } else {
-        cart.push({ name, price, qty: 1 });
+        cart.push({
+          name,
+          basePrice,
+          qty: 1,
+          isPizza,
+          preference: "",
+          extras: [],
+          extrasOpen: false
+        });
       }
       updateCartUI();
       showToast(`+1 ${name}`);
@@ -1193,34 +1256,34 @@
       updateCartUI();
     }
 
-    function hasPizzaInCart() {
-      return cart.some(item => {
-        const n = item.name.toLowerCase();
-        return n.includes("pizza") ||
-               n.includes("muzzarella") ||
-               n.includes("napolitana") ||
-               n.includes("especial") ||
-               n.includes("crema") ||
-               n.includes("fugazzeta") ||
-               n.includes("española") ||
-               n.includes("provenzal") ||
-               n.includes("roquefort") ||
-               n.includes("calabresa") ||
-               n.includes("marino") ||
-               n.includes("primavera") ||
-               n.includes("gran king") ||
-               n.includes("palmitos") ||
-               n.includes("alemana") ||
-               n.includes("kabaret") ||
-               n.includes("italiana") ||
-               n.includes("rúcula") ||
-               n.includes("champiñones");
-      });
+    function updatePreference(index, value) {
+      cart[index].preference = value;
+    }
+
+    function toggleItemExtras(index) {
+      cart[index].extrasOpen = !cart[index].extrasOpen;
+      updateCartUI();
+    }
+
+    function addExtraToPizza(itemIndex, extraIdx) {
+      const extra = PIZZA_EXTRAS[extraIdx];
+      cart[itemIndex].extras.push({ label: extra.label, price: extra.price });
+      updateCartUI();
+      showToast(`Extra agregado a ${cart[itemIndex].name}`);
+    }
+
+    function removeExtraFromPizza(itemIndex, extraPos) {
+      cart[itemIndex].extras.splice(extraPos, 1);
+      updateCartUI();
+    }
+
+    function escapeAttr(str) {
+      return (str || "").replace(/"/g, "&quot;");
     }
 
     function updateCartUI() {
       const totalItems = cart.reduce((acc, item) => acc + item.qty, 0);
-      const totalPrice = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
+      const totalPrice = cart.reduce((acc, item) => acc + (getItemUnitPrice(item) * item.qty), 0);
 
       document.getElementById("circle-cart-count").textContent = totalItems;
       document.getElementById("cart-total-price").textContent = formatMoney(totalPrice);
@@ -1233,55 +1296,68 @@
         footer.style.display = "none";
       } else {
         footer.style.display = "block";
-        const showPizzaExtras = hasPizzaInCart();
+        itemsContainer.innerHTML = cart.map((item, idx) => {
+          const unitPrice = getItemUnitPrice(item);
+          const subtotal = unitPrice * item.qty;
 
-        const extrasHtml = showPizzaExtras ? `
-          <div class="pizza-extras-box">
-            <h3>🍕 Extras para tus Pizzas</h3>
+          const extrasHtml = item.extras && item.extras.length > 0
+            ? `<div class="cart-item-extras-applied">
+                ${item.extras.map((ex, exIdx) => `
+                  <span class="extra-tag">
+                    + ${ex.label} (${formatMoney(ex.price)})
+                    <button type="button" onclick="removeExtraFromPizza(${idx}, ${exIdx})" title="Quitar extra">✕</button>
+                  </span>
+                `).join('')}
+               </div>`
+            : '';
 
-            <div class="extra-group">
-              <span class="extra-group-title">Agregado de Anchoas</span>
-              <div class="extra-buttons-row">
-                <button type="button" class="extra-add-btn" onclick="addToCart('Agregado de Anchoas (Media Pizza)', 6000)">
-                  <span>+ Media Pizza</span>
-                  <span class="extra-price">$6.000</span>
-                </button>
-                <button type="button" class="extra-add-btn" onclick="addToCart('Agregado de Anchoas (Pizza Entera)', 12000)">
-                  <span>+ Pizza Entera</span>
-                  <span class="extra-price">$12.000</span>
-                </button>
+          const pizzaExtrasBlock = item.isPizza
+            ? `<div class="cart-item-actions-row">
+                 <button type="button" class="btn-extras-toggle" onclick="toggleItemExtras(${idx})">
+                   ${item.extrasOpen ? '▲ Ocultar extras' : '+ Extras para esta pizza'}
+                 </button>
+               </div>
+               <div class="pizza-extras-panel ${item.extrasOpen ? 'open' : ''}">
+                 ${PIZZA_EXTRAS.map((ex, exIdx) => `
+                   <div class="pizza-extra-option">
+                     <span>${ex.label}</span>
+                     <div style="display:flex;align-items:center;gap:6px;">
+                       <strong style="color:var(--red-brand);">${formatMoney(ex.price)}</strong>
+                       <button type="button" class="pizza-extra-add" onclick="addExtraToPizza(${idx}, ${exIdx})">+ Agregar</button>
+                     </div>
+                   </div>
+                 `).join('')}
+               </div>`
+            : '';
+
+          return `
+            <div class="cart-item">
+              <div class="cart-item-top">
+                <div class="cart-item-info">
+                  <h4>${item.name}</h4>
+                  <span>${formatMoney(subtotal)}</span>
+                </div>
+                <div class="qty-controls">
+                  <button type="button" class="qty-btn" onclick="changeQty(${idx}, -1)">-</button>
+                  <span class="qty-val">${item.qty}</span>
+                  <button type="button" class="qty-btn" onclick="changeQty(${idx}, 1)">+</button>
+                </div>
+              </div>
+
+              ${extrasHtml}
+              ${pizzaExtrasBlock}
+
+              <div class="pref-input-wrap">
+                <input 
+                  type="text" 
+                  class="pref-input" 
+                  placeholder="Preferencias (Ej: sin tomate, sin cebolla, sin aderezos...)" 
+                  value="${escapeAttr(item.preference)}"
+                  oninput="updatePreference(${idx}, this.value)">
               </div>
             </div>
-
-            <div class="extra-group">
-              <span class="extra-group-title">Agregado de Champiñones</span>
-              <div class="extra-buttons-row">
-                <button type="button" class="extra-add-btn" onclick="addToCart('Agregado de Champiñones (Media Pizza)', 10500)">
-                  <span>+ Media Pizza</span>
-                  <span class="extra-price">$10.500</span>
-                </button>
-                <button type="button" class="extra-add-btn" onclick="addToCart('Agregado de Champiñones (Pizza Completa)', 21000)">
-                  <span>+ Pizza Completa</span>
-                  <span class="extra-price">$21.000</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        ` : '';
-
-        itemsContainer.innerHTML = cart.map((item, idx) => `
-          <div class="cart-item">
-            <div class="cart-item-info">
-              <h4>${item.name}</h4>
-              <span>${formatMoney(item.price * item.qty)}</span>
-            </div>
-            <div class="qty-controls">
-              <button class="qty-btn" onclick="changeQty(${idx}, -1)">-</button>
-              <span class="qty-val">${item.qty}</span>
-              <button class="qty-btn" onclick="changeQty(${idx}, 1)">+</button>
-            </div>
-          </div>
-        `).join('') + extrasHtml;
+          `;
+        }).join('');
       }
     }
 
@@ -1290,19 +1366,26 @@
 
       const custName = document.getElementById("cust-name").value.trim();
       const deliveryType = document.getElementById("cust-delivery").value;
-      const preferences = document.getElementById("cust-preferences").value.trim();
       const address = document.getElementById("cust-address").value.trim();
 
       let message = `¡Hola *Pamper's King*! Quiero hacer el siguiente pedido:\n\n`;
 
       cart.forEach(item => {
-        message += `▪️ ${item.qty}x ${item.name} — ${formatMoney(item.price * item.qty)}\n`;
+        const unitPrice = getItemUnitPrice(item);
+        message += `▪️ *${item.qty}x ${item.name}* — ${formatMoney(unitPrice * item.qty)}\n`;
+        if (item.extras && item.extras.length > 0) {
+          item.extras.forEach(ex => {
+            message += `    ➕ _${ex.label}_ (${formatMoney(ex.price)})\n`;
+          });
+        }
+        if (item.preference && item.preference.trim() !== "") {
+          message += `    📝 _Preferencias:_ ${item.preference.trim()}\n`;
+        }
       });
 
-      const totalPrice = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
+      const totalPrice = cart.reduce((acc, item) => acc + (getItemUnitPrice(item) * item.qty), 0);
       message += `\n*TOTAL ESTIMADO: ${formatMoney(totalPrice)}*\n`;
       message += `🛵 *Modalidad:* ${deliveryType}\n`;
-      if (preferences) message += `📝 *Preferencias:* ${preferences}\n`;
       if (custName) message += `👤 *Nombre:* ${custName}\n`;
       if (address) message += `📍 *Dirección / Notas:* ${address}\n`;
 
