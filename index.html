@@ -424,7 +424,7 @@
     .cart-drawer {
       background-color: var(--bg-paper);
       width: 100%;
-      max-width: 420px;
+      max-width: 430px;
       height: 100%;
       border-left: 4px solid var(--ink-dark);
       display: flex;
@@ -490,7 +490,7 @@
     }
 
     .cart-item-info h4 {
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       font-weight: 800;
     }
 
@@ -522,10 +522,82 @@
       text-align: center;
     }
 
+    /* Bloque de extras para pizzas dentro del carrito */
+    .pizza-extras-box {
+      background-color: var(--yellow-soft);
+      border: 2px solid var(--ink-dark);
+      border-radius: 12px;
+      padding: 12px;
+      margin-top: 14px;
+      box-shadow: 2px 2px 0 var(--ink-dark);
+    }
+
+    .pizza-extras-box h3 {
+      font-size: 1.05rem;
+      color: var(--red-brand);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .extra-group {
+      margin-bottom: 10px;
+    }
+
+    .extra-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .extra-group-title {
+      font-size: 0.84rem;
+      font-weight: 800;
+      color: var(--ink-dark);
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    .extra-buttons-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+    }
+
+    .extra-add-btn {
+      background-color: #fff;
+      color: var(--ink-dark);
+      border: 2px solid var(--ink-dark);
+      border-radius: 8px;
+      padding: 6px 8px;
+      font-family: inherit;
+      font-size: 0.78rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 2px;
+      box-shadow: 2px 2px 0 var(--ink-dark);
+      transition: all 0.1s;
+    }
+
+    .extra-add-btn:hover {
+      background-color: var(--red-brand);
+      color: #fff;
+    }
+
+    .extra-add-btn .extra-price {
+      color: var(--red-brand);
+      font-size: 0.82rem;
+    }
+
+    .extra-add-btn:hover .extra-price {
+      color: var(--yellow-mark);
+    }
+
     .cart-footer {
       background: #fff;
       border-top: 3px solid var(--ink-dark);
-      padding: 16px;
+      padding: 14px 16px;
     }
 
     .customer-fields {
@@ -535,22 +607,37 @@
       margin-bottom: 12px;
     }
 
-    .customer-fields input, .customer-fields select {
+    .customer-fields label {
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: var(--ink-dark);
+      margin-bottom: -4px;
+    }
+
+    .customer-fields input,
+    .customer-fields select,
+    .customer-fields textarea {
       width: 100%;
-      padding: 9px 12px;
+      padding: 8px 11px;
       border: 2px solid var(--ink-dark);
       border-radius: 8px;
       font-family: inherit;
-      font-size: 0.88rem;
+      font-size: 0.86rem;
       font-weight: 600;
       background-color: var(--bg-paper);
+      color: var(--ink-dark);
+    }
+
+    .customer-fields textarea {
+      resize: vertical;
+      min-height: 58px;
     }
 
     .cart-total-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       font-weight: 800;
       margin-bottom: 12px;
     }
@@ -676,12 +763,20 @@
 
       <div class="cart-footer" id="cart-footer" style="display: none;">
         <div class="customer-fields">
+          <label for="cust-name">Nombre</label>
           <input type="text" id="cust-name" placeholder="Tu nombre (Ej: Juan)">
+
+          <label for="cust-delivery">Modalidad</label>
           <select id="cust-delivery">
             <option value="Retiro en el local">Retiro en el local</option>
             <option value="Envío a domicilio">Envío a domicilio</option>
           </select>
-          <input type="text" id="cust-address" placeholder="Dirección / Notas (opcional)">
+
+          <label for="cust-preferences">Preferencias (sin tomate, sin cebolla, sin aderezos, etc.)</label>
+          <textarea id="cust-preferences" placeholder="Ej: Sin tomate ni cebolla, sin mayonesa, bien cocido..."></textarea>
+
+          <label for="cust-address">Dirección / Notas adicionales</label>
+          <input type="text" id="cust-address" placeholder="Calle, altura o aclaración de entrega">
         </div>
 
         <div class="cart-total-row">
@@ -1025,8 +1120,8 @@
             desc: "Adicional extra para tu pizza.",
             special: true,
             variants: [
-              { label: "Chica", price: 6000 },
-              { label: "Grande", price: 12000 }
+              { label: "Media Pizza", price: 6000 },
+              { label: "Pizza Entera", price: 12000 }
             ]
           }
         ]
@@ -1098,6 +1193,31 @@
       updateCartUI();
     }
 
+    function hasPizzaInCart() {
+      return cart.some(item => {
+        const n = item.name.toLowerCase();
+        return n.includes("pizza") ||
+               n.includes("muzzarella") ||
+               n.includes("napolitana") ||
+               n.includes("especial") ||
+               n.includes("crema") ||
+               n.includes("fugazzeta") ||
+               n.includes("española") ||
+               n.includes("provenzal") ||
+               n.includes("roquefort") ||
+               n.includes("calabresa") ||
+               n.includes("marino") ||
+               n.includes("primavera") ||
+               n.includes("gran king") ||
+               n.includes("palmitos") ||
+               n.includes("alemana") ||
+               n.includes("kabaret") ||
+               n.includes("italiana") ||
+               n.includes("rúcula") ||
+               n.includes("champiñones");
+      });
+    }
+
     function updateCartUI() {
       const totalItems = cart.reduce((acc, item) => acc + item.qty, 0);
       const totalPrice = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
@@ -1113,6 +1233,42 @@
         footer.style.display = "none";
       } else {
         footer.style.display = "block";
+        const showPizzaExtras = hasPizzaInCart();
+
+        const extrasHtml = showPizzaExtras ? `
+          <div class="pizza-extras-box">
+            <h3>🍕 Extras para tus Pizzas</h3>
+
+            <div class="extra-group">
+              <span class="extra-group-title">Agregado de Anchoas</span>
+              <div class="extra-buttons-row">
+                <button type="button" class="extra-add-btn" onclick="addToCart('Agregado de Anchoas (Media Pizza)', 6000)">
+                  <span>+ Media Pizza</span>
+                  <span class="extra-price">$6.000</span>
+                </button>
+                <button type="button" class="extra-add-btn" onclick="addToCart('Agregado de Anchoas (Pizza Entera)', 12000)">
+                  <span>+ Pizza Entera</span>
+                  <span class="extra-price">$12.000</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="extra-group">
+              <span class="extra-group-title">Agregado de Champiñones</span>
+              <div class="extra-buttons-row">
+                <button type="button" class="extra-add-btn" onclick="addToCart('Agregado de Champiñones (Media Pizza)', 10500)">
+                  <span>+ Media Pizza</span>
+                  <span class="extra-price">$10.500</span>
+                </button>
+                <button type="button" class="extra-add-btn" onclick="addToCart('Agregado de Champiñones (Pizza Completa)', 21000)">
+                  <span>+ Pizza Completa</span>
+                  <span class="extra-price">$21.000</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        ` : '';
+
         itemsContainer.innerHTML = cart.map((item, idx) => `
           <div class="cart-item">
             <div class="cart-item-info">
@@ -1125,7 +1281,7 @@
               <button class="qty-btn" onclick="changeQty(${idx}, 1)">+</button>
             </div>
           </div>
-        `).join('');
+        `).join('') + extrasHtml;
       }
     }
 
@@ -1134,6 +1290,7 @@
 
       const custName = document.getElementById("cust-name").value.trim();
       const deliveryType = document.getElementById("cust-delivery").value;
+      const preferences = document.getElementById("cust-preferences").value.trim();
       const address = document.getElementById("cust-address").value.trim();
 
       let message = `¡Hola *Pamper's King*! Quiero hacer el siguiente pedido:\n\n`;
@@ -1145,6 +1302,7 @@
       const totalPrice = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
       message += `\n*TOTAL ESTIMADO: ${formatMoney(totalPrice)}*\n`;
       message += `🛵 *Modalidad:* ${deliveryType}\n`;
+      if (preferences) message += `📝 *Preferencias:* ${preferences}\n`;
       if (custName) message += `👤 *Nombre:* ${custName}\n`;
       if (address) message += `📍 *Dirección / Notas:* ${address}\n`;
 
