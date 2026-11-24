@@ -662,6 +662,35 @@
       background-color: var(--bg-paper);
     }
 
+    .address-box {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .address-box.visible {
+      display: flex;
+    }
+
+    .delivery-note {
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: var(--red-brand);
+      background-color: var(--yellow-soft);
+      border: 1.5px solid var(--ink-dark);
+      border-radius: 6px;
+      padding: 4px 8px;
+    }
+
+    .subtotal-line {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--ink-muted);
+      margin-bottom: 4px;
+    }
+
     .cart-total-row {
       display: flex;
       justify-content: space-between;
@@ -669,6 +698,8 @@
       font-size: 1.2rem;
       font-weight: 800;
       margin-bottom: 12px;
+      padding-top: 6px;
+      border-top: 2px dashed #e2d9c8;
     }
 
     .checkout-wa-btn {
@@ -793,11 +824,24 @@
       <div class="cart-footer" id="cart-footer" style="display: none;">
         <div class="customer-fields">
           <input type="text" id="cust-name" placeholder="Tu nombre (Ej: Juan)">
-          <select id="cust-delivery">
-            <option value="Retiro en el local">Retiro en el local</option>
-            <option value="Envío a domicilio">Envío a domicilio</option>
+          <select id="cust-delivery" onchange="handleDeliveryChange()">
+            <option value="Retiro en el local">Retiro en el local (Sin cargo)</option>
+            <option value="Envío a domicilio">Envío a domicilio (+ $4.000 de delivery)</option>
           </select>
-          <input type="text" id="cust-address" placeholder="Dirección / Notas generales (opcional)">
+
+          <div class="address-box" id="address-box">
+            <span class="delivery-note">🛵 Aclaración: el costo del delivery es de $4.000.</span>
+            <input type="text" id="cust-address" placeholder="Ingresá tu dirección (calle, altura, piso/depto)...">
+          </div>
+        </div>
+
+        <div class="subtotal-line">
+          <span>Productos:</span>
+          <span id="cart-subtotal-price">$0</span>
+        </div>
+        <div class="subtotal-line" id="delivery-line" style="display: none;">
+          <span>Delivery:</span>
+          <span>$4.000</span>
         </div>
 
         <div class="cart-total-row">
@@ -814,8 +858,8 @@
 
   <script>
     const WHATSAPP_PHONE = "5493644135401";
+    const DELIVERY_FEE = 4000;
 
-    // Extras disponibles individualmente para cada pizza en el carrito
     const PIZZA_EXTRAS = [
       { label: "Agregado de Anchoas (Media pizza)", price: 6000 },
       { label: "Agregado de Anchoas (Pizza entera)", price: 12000 },
@@ -1177,7 +1221,6 @@
       }
     ];
 
-    // Cada ítem del carrito guarda: name, basePrice, qty, isPizza, preference, extras ([]), extrasOpen (bool)
     let cart = [];
 
     function formatMoney(num) {
@@ -1187,6 +1230,36 @@
     function getItemUnitPrice(item) {
       const extrasSum = (item.extras || []).reduce((s, ex) => s + ex.price, 0);
       return item.basePrice + extrasSum;
+    }
+
+    function isDeliverySelected() {
+      const selectEl = document.getElementById("cust-delivery");
+      return selectEl && selectEl.value === "Envío a domicilio";
+    }
+
+    function handleDeliveryChange() {
+      const isDelivery = isDeliverySelected();
+      const addressBox = document.getElementById("address-box");
+      const deliveryLine = document.getElementById("delivery-line");
+
+      if (isDelivery) {
+        addressBox.classList.add("visible");
+        deliveryLine.style.display = "flex";
+      } else {
+        addressBox.classList.remove("visible");
+        deliveryLine.style.display = "none";
+      }
+
+      updateTotalsOnly();
+    }
+
+    function updateTotalsOnly() {
+      const subtotal = cart.reduce((acc, item) => acc + (getItemUnitPrice(item) * item.qty), 0);
+      const deliveryCost = (cart.length > 0 && isDeliverySelected()) ? DELIVERY_FEE : 0;
+      const total = subtotal + deliveryCost;
+
+      document.getElementById("cart-subtotal-price").textContent = formatMoney(subtotal);
+      document.getElementById("cart-total-price").textContent = formatMoney(total);
     }
 
     function renderMenu() {
@@ -1283,10 +1356,7 @@
 
     function updateCartUI() {
       const totalItems = cart.reduce((acc, item) => acc + item.qty, 0);
-      const totalPrice = cart.reduce((acc, item) => acc + (getItemUnitPrice(item) * item.qty), 0);
-
       document.getElementById("circle-cart-count").textContent = totalItems;
-      document.getElementById("cart-total-price").textContent = formatMoney(totalPrice);
 
       const itemsContainer = document.getElementById("cart-items-container");
       const footer = document.getElementById("cart-footer");
@@ -1359,13 +1429,16 @@
           `;
         }).join('');
       }
+
+      handleDeliveryChange();
     }
 
     function sendOrderToWhatsApp() {
       if (cart.length === 0) return;
 
       const custName = document.getElementById("cust-name").value.trim();
-      const deliveryType = document.getElementById("cust-delivery").value;
+      const isDelivery = isDeliverySelected();
+      const deliveryType = isDelivery ? "Envío a domicilio" : "Retiro en el local";
       const address = document.getElementById("cust-address").value.trim();
 
       let message = `¡Hola *Pamper's King*! Quiero hacer el siguiente pedido:\n\n`;
@@ -1383,11 +1456,20 @@
         }
       });
 
-      const totalPrice = cart.reduce((acc, item) => acc + (getItemUnitPrice(item) * item.qty), 0);
-      message += `\n*TOTAL ESTIMADO: ${formatMoney(totalPrice)}*\n`;
-      message += `🛵 *Modalidad:* ${deliveryType}\n`;
+      const subtotal = cart.reduce((acc, item) => acc + (getItemUnitPrice(item) * item.qty), 0);
+      const deliveryCost = isDelivery ? DELIVERY_FEE : 0;
+      const totalPrice = subtotal + deliveryCost;
+
+      message += `\n*Subtotal productos:* ${formatMoney(subtotal)}\n`;
+      message += `🛵 *Modalidad:* ${deliveryType}`;
+      if (isDelivery) {
+        message += ` (Delivery: ${formatMoney(DELIVERY_FEE)})\n`;
+        if (address) message += `📍 *Dirección:* ${address}\n`;
+      } else {
+        message += `\n`;
+      }
+      message += `*TOTAL ESTIMADO: ${formatMoney(totalPrice)}*\n`;
       if (custName) message += `👤 *Nombre:* ${custName}\n`;
-      if (address) message += `📍 *Dirección / Notas:* ${address}\n`;
 
       const encodedMsg = encodeURIComponent(message);
       const waUrl = `https://wa.me/${WHATSAPP_PHONE}?text=${encodedMsg}`;
